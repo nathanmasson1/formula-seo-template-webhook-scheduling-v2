@@ -1,0 +1,1020 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { readData } from '../lib/readData';
+import { socialLinkAttrs } from '../lib/socialLinks';
+
+const data = readData('criacaoSites.json') || {};
+const seo = data.seo || {};
+const hero = data.hero || {};
+const intro = data.intro || {};
+const pricingBanner = data.pricingBanner || {};
+const benefits = data.benefits || {};
+const services = data.services || {};
+const packageSection = data.package || {};
+const process = data.process || {};
+const presence = data.presence || {};
+const faq = data.faq || {};
+const cta = data.cta || {};
+const faqItems = faq.items || [];
+---
+
+<BaseLayout
+  title={seo.title || 'Criação de Sites'}
+  description={seo.description || 'Criação de sites profissionais com foco em SEO e conversão.'}
+  image={seo.image || undefined}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item: any) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  })} />
+
+  <section class="site-hero">
+    <div class="container site-hero-inner">
+      <div class="site-hero-copy">
+        {hero.label && <span class="mini-label">{hero.label}</span>}
+        <h1>
+          {hero.title}
+          {hero.titleAccent && <span>{hero.titleAccent}</span>}
+        </h1>
+        <p>{hero.subtitle}</p>
+        <div class="hero-actions">
+          {hero.primaryCta?.href && (
+            <a class="btn site-hero-whatsapp" href={hero.primaryCta.href} {...socialLinkAttrs(hero.primaryCta.href, hero.primaryCta.text || 'Falar no WhatsApp')}>
+              {hero.primaryCta.text}
+            </a>
+          )}
+        </div>
+      </div>
+      <div class="hero-visual">
+        {hero.image && <img src={hero.image} alt="" loading="eager" />}
+      </div>
+    </div>
+  </section>
+
+  {(hero.stats || []).length > 0 && (
+    <section class="stats-strip">
+      <div class="container stats-grid">
+        {(hero.stats || []).map((stat: any) => (
+          <div>
+            <strong>{stat.number}</strong>
+            <span>{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="intro-section section">
+    <div class="container split-grid">
+      <div class="intro-media">
+        {intro.image && <img src={intro.image} alt="" loading="lazy" />}
+      </div>
+      <div class="section-copy">
+        {intro.label && <span class="mini-label purple">{intro.label}</span>}
+        <h2>{intro.title}</h2>
+        <p>{intro.text}</p>
+        {intro.cta?.href && <a class="purple-button" href={intro.cta.href} {...socialLinkAttrs(intro.cta.href, intro.cta.text || 'Abrir rede social')}>{intro.cta.text}</a>}
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-banner-section">
+    <div class="container">
+      <div class="pricing-banner">
+        <div class="pricing-copy">
+          <h2>{pricingBanner.title}</h2>
+          <p>{pricingBanner.text}</p>
+        </div>
+        <div class="pricing-value">
+          <span>{pricingBanner.priceLabel}</span>
+          <strong>{pricingBanner.price}</strong>
+        </div>
+        {pricingBanner.cta?.href && (
+          <a class="pricing-button" href={pricingBanner.cta.href} {...socialLinkAttrs(pricingBanner.cta.href, pricingBanner.cta.text || 'Falar no WhatsApp')}>
+            <span class="pricing-whatsapp-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32">
+                <path d="M16.04 3.2c-7.02 0-12.72 5.7-12.72 12.72 0 2.24.59 4.42 1.7 6.35L3.2 28.8l6.68-1.75a12.67 12.67 0 0 0 6.16 1.57c7.02 0 12.72-5.7 12.72-12.72S23.06 3.2 16.04 3.2Zm0 23.28c-1.93 0-3.82-.52-5.47-1.5l-.39-.23-3.96 1.04 1.06-3.86-.25-.4a10.5 10.5 0 0 1-1.58-5.61c0-5.84 4.75-10.59 10.59-10.59s10.59 4.75 10.59 10.59-4.75 10.56-10.59 10.56Zm5.8-7.93c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.55-.08-.16-.71-1.72-.98-2.35-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.4-.29.32-1.11 1.08-1.11 2.64s1.14 3.07 1.3 3.28c.16.21 2.25 3.43 5.44 4.81.76.33 1.36.53 1.82.68.76.24 1.46.21 2.01.13.61-.09 1.88-.77 2.14-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z" fill="currentColor"></path>
+              </svg>
+            </span>
+            {pricingBanner.cta.text}
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits-section section" id="diferenciais">
+    <div class="container">
+      <div class="center-heading">
+        {benefits.label && <span class="mini-label gold">{benefits.label}</span>}
+        <h2>{benefits.title}</h2>
+        <p>{benefits.subtitle}</p>
+      </div>
+      <div class="benefits-grid">
+        {(benefits.items || []).map((item: any, index: number) => (
+          <article>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section section">
+    <div class="container">
+      <div class="center-heading">
+        {services.label && <span class="mini-label purple">{services.label}</span>}
+        <h2>{services.title}</h2>
+        <p>{services.subtitle}</p>
+      </div>
+      <div class="portfolio-grid">
+        {(services.items || []).map((item: any) => (
+          <article
+            class="portfolio-card"
+            style={`--portfolio-image: url('${item.image || '/images/portfolio-showcase.jpg'}'); --portfolio-size: ${item.imageSize || 'cover'}; --portfolio-position: ${item.imagePosition || 'center'};`}
+          >
+            <a
+              href={item.link || '#'}
+              target={item.link?.startsWith('http') ? '_blank' : undefined}
+              rel={item.link?.startsWith('http') ? 'nofollow noopener' : undefined}
+              aria-label={`Ver projeto ${item.title || 'do portfólio'}`}
+            >
+              <div class="portfolio-shot"></div>
+              <div class="portfolio-info">
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+                <span aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="package-section section">
+    <div class="container split-grid">
+      <div class="section-copy">
+        {packageSection.label && <span class="mini-label gold">{packageSection.label}</span>}
+        <h2>{packageSection.title}</h2>
+        <p>{packageSection.text}</p>
+        <div class="package-list">
+          {(packageSection.bullets || []).map((item: string) => <span>{item}</span>)}
+        </div>
+      </div>
+      <div class="package-media">
+        {packageSection.image && <img src={packageSection.image} alt="" loading="lazy" />}
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section section">
+    <div class="container">
+      <div class="center-heading">
+        {process.label && <span class="mini-label purple">{process.label}</span>}
+        <h2>{process.title}</h2>
+      </div>
+      <div class="process-grid">
+        {(process.items || []).map((item: any) => (
+          <article>
+            <strong>{item.step}</strong>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="presence-section section">
+    <div class="container">
+      <div class="center-heading compact">
+        {presence.label && <span class="mini-label purple">{presence.label}</span>}
+        <h2>{presence.title}</h2>
+        <p>{presence.subtitle}</p>
+      </div>
+      <div class="presence-grid">
+        <div class="presence-copy">
+          <h3>
+            {presence.highlight && presence.heading?.includes(presence.highlight) ? (
+              <>
+                {presence.heading.split(presence.highlight)[0]}
+                <span>{presence.highlight}</span>
+                {presence.heading.split(presence.highlight).slice(1).join(presence.highlight)}
+              </>
+            ) : presence.heading}
+          </h3>
+          {(presence.text || '').split('\n\n').map((paragraph: string) => <p>{paragraph}</p>)}
+          {presence.cta?.href && (
+            <a class="presence-button" href={presence.cta.href} {...socialLinkAttrs(presence.cta.href, presence.cta.text || 'Abrir rede social')}>
+              <span aria-hidden="true">◉</span>
+              {presence.cta.text}
+              <strong aria-hidden="true">→</strong>
+            </a>
+          )}
+        </div>
+        <div class="presence-map">
+          {presence.image && <img src={presence.image} alt="" loading="lazy" />}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section section">
+    <div class="container faq-grid">
+      <div>
+        {faq.label && <span class="mini-label gold">{faq.label}</span>}
+        <h2>{faq.title}</h2>
+        <p>{faq.subtitle}</p>
+      </div>
+      <div class="faq-list">
+        {faqItems.map((item: any) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="container final-cta-inner">
+      <div>
+        <span class="mini-label">{hero.label || 'Criação de sites'}</span>
+        <h2>{cta.title}</h2>
+        <p>{cta.text}</p>
+      </div>
+      <div class="hero-actions">
+        {cta.primaryCta?.href && (
+          <a class="primary-action whatsapp-action" href={cta.primaryCta.href} style="background:#25d366;color:#fff;border-color:#25d366;" {...socialLinkAttrs(cta.primaryCta.href, cta.primaryCta.text || 'Falar no WhatsApp')}>
+            {cta.primaryCta.text}
+          </a>
+        )}
+        {cta.secondaryCta?.href && <a class="secondary-action light" href={cta.secondaryCta.href} {...socialLinkAttrs(cta.secondaryCta.href, cta.secondaryCta.text || 'Abrir rede social')}>{cta.secondaryCta.text}</a>}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .site-hero {
+    padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-4xl);
+    background:
+      linear-gradient(135deg, rgba(52, 8, 88, 0.96), rgba(142, 36, 204, 0.84)),
+      linear-gradient(90deg, rgba(20, 8, 36, 0.92), rgba(115, 63, 208, 0.42));
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .site-hero-inner,
+  .split-grid,
+  .faq-grid,
+  .final-cta-inner {
+    display: grid;
+    grid-template-columns: 1fr 0.82fr;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .site-hero-copy h1 {
+    color: #fff;
+    font-size: var(--fs-hero);
+    line-height: 1.03;
+    letter-spacing: 0;
+    max-width: 820px;
+  }
+
+  .site-hero-copy h1 span {
+    display: block;
+    color: var(--color-accent-light);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: var(--fw-regular);
+  }
+
+  .site-hero-copy p,
+  .final-cta p {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: var(--fs-lg);
+    line-height: var(--lh-relaxed);
+    max-width: 720px;
+    margin-top: var(--space-lg);
+  }
+
+  .mini-label {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-full);
+    padding: 0.45rem 0.9rem;
+    margin-bottom: var(--space-lg);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-accent-light);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+  }
+
+  .mini-label.purple {
+    background: var(--color-primary-surface);
+    border-color: var(--color-primary-lighter);
+    color: var(--color-primary);
+  }
+
+  .mini-label.gold {
+    background: var(--color-accent-surface);
+    border-color: var(--color-accent-light);
+    color: var(--color-accent-dark);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+  }
+
+  .site-hero-btn {
+    padding: 1rem 2.5rem;
+    font-size: var(--fs-sm);
+  }
+
+  .site-hero-whatsapp {
+    color: #fff;
+    background: linear-gradient(135deg, #25d366, #128c4a);
+    border-color: transparent;
+    padding: 1rem 1.6rem;
+    box-shadow: 0 14px 30px rgba(37, 211, 102, 0.28);
+  }
+
+  .site-hero-whatsapp:hover {
+    color: #fff;
+    background: linear-gradient(135deg, #2be36f, #0f7f42);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(37, 211, 102, 0.34);
+  }
+
+  .primary-action,
+  .secondary-action,
+  .purple-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    border-radius: 8px;
+    padding: 0.9rem 1.35rem;
+    font-weight: var(--fw-bold);
+  }
+
+  .primary-action {
+    background: var(--color-accent);
+    color: #1f1430;
+    box-shadow: 0 16px 34px rgba(244, 182, 63, 0.24);
+  }
+
+  .primary-action:hover {
+    color: #1f1430;
+    background: var(--color-accent-light);
+  }
+
+  .final-cta .primary-action.whatsapp-action {
+    background: #25d366 !important;
+    border-color: #25d366 !important;
+    color: #fff !important;
+    box-shadow: 0 16px 34px rgba(37, 211, 102, 0.26) !important;
+  }
+
+  .final-cta .primary-action.whatsapp-action:hover {
+    background: #1ebe5d !important;
+    border-color: #1ebe5d !important;
+    color: #fff !important;
+  }
+
+  .secondary-action {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  .secondary-action:hover,
+  .secondary-action.light:hover {
+    color: var(--color-accent-light);
+  }
+
+  .secondary-action.light {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.24);
+  }
+
+  .purple-button {
+    background: var(--color-primary);
+    color: #fff;
+    margin-top: var(--space-xl);
+  }
+
+  .purple-button:hover {
+    color: #fff;
+    background: var(--color-primary-medium);
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-visual::before {
+    content: "";
+    position: absolute;
+    inset: 10% -8% -8% 14%;
+    background: rgba(244, 182, 63, 0.22);
+    border-radius: 8px;
+    transform: rotate(-3deg);
+  }
+
+  .hero-visual img,
+  .intro-media img,
+  .package-media img {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .hero-visual img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .stats-strip {
+    background: var(--color-bg-dark);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .stats-grid div {
+    padding: var(--space-xl);
+    background: var(--color-bg-dark);
+    color: #fff;
+  }
+
+  .stats-grid strong {
+    display: block;
+    color: var(--color-accent-light);
+    font-size: var(--fs-2xl);
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+  }
+
+  .stats-grid span {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: var(--fs-sm);
+  }
+
+  .intro-section,
+  .services-section,
+  .faq-section {
+    background: var(--color-bg-warm);
+  }
+
+  .pricing-banner-section {
+    padding: var(--space-3xl) 0;
+    background: #fff;
+  }
+
+  .pricing-banner {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(260px, auto) minmax(260px, auto);
+    align-items: center;
+    gap: var(--space-xl);
+    padding: var(--space-2xl);
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ffffff, #f8f5fb);
+    box-shadow: 0 18px 50px rgba(32, 8, 52, 0.08);
+  }
+
+  .pricing-copy h2 {
+    color: var(--color-primary);
+    font-size: var(--fs-md);
+    line-height: 1.25;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+  }
+
+  .pricing-copy p {
+    color: var(--color-text-secondary);
+    font-size: var(--fs-sm);
+    line-height: 1.45;
+    max-width: 440px;
+  }
+
+  .pricing-value {
+    justify-self: center;
+    text-align: left;
+    padding: 0 var(--space-xl);
+    border-left: 1px solid rgba(142, 36, 204, 0.12);
+    border-right: 1px solid rgba(142, 36, 204, 0.12);
+  }
+
+  .pricing-value span {
+    display: block;
+    color: var(--color-text-secondary);
+    font-size: var(--fs-sm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+  }
+
+  .pricing-value strong {
+    display: block;
+    color: var(--color-primary);
+    font-size: clamp(2.6rem, 4vw, 4.2rem);
+    line-height: 0.95;
+    font-weight: var(--fw-extrabold);
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .pricing-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+    gap: 0.65rem;
+    min-height: 52px;
+    min-width: 270px;
+    padding: 0.9rem 1.35rem;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: #fff;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+    box-shadow: 0 12px 28px rgba(142, 36, 204, 0.24);
+  }
+
+  .pricing-whatsapp-icon {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    flex: 0 0 auto;
+  }
+
+  .pricing-whatsapp-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .pricing-button:hover {
+    background: var(--color-primary-medium);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .section-copy h2,
+  .center-heading h2,
+  .faq-grid h2,
+  .final-cta h2 {
+    letter-spacing: 0;
+  }
+
+  .section-copy p,
+  .center-heading p,
+  .portfolio-grid p,
+  .benefits-grid p,
+  .process-grid p,
+  .faq-grid > div:first-child p {
+    color: var(--color-text-muted);
+    line-height: var(--lh-relaxed);
+  }
+
+  .section-copy h2 + p {
+    margin-top: var(--space-lg);
+  }
+
+  .center-heading {
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto var(--space-4xl);
+  }
+
+  .center-heading.compact {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .center-heading .mini-label {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .benefits-section,
+  .process-section {
+    background: var(--color-bg-pure);
+  }
+
+  .benefits-grid,
+  .portfolio-grid,
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .benefits-grid article,
+  .process-grid article,
+  .faq-list details {
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    background: #fff;
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .benefits-grid article {
+    min-height: 270px;
+  }
+
+  .benefits-grid span,
+  .process-grid strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    margin-bottom: var(--space-lg);
+    background: var(--color-primary-surface);
+    color: var(--color-primary);
+    font-weight: var(--fw-extrabold);
+  }
+
+  .benefits-grid h3,
+  .portfolio-grid h3,
+  .process-grid h3 {
+    font-size: var(--fs-xl);
+    letter-spacing: 0;
+    margin-bottom: var(--space-md);
+  }
+
+  .portfolio-grid {
+    gap: var(--space-lg);
+  }
+
+  .portfolio-card {
+    position: relative;
+    min-height: 360px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ddd;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .portfolio-card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+  }
+
+  .portfolio-shot {
+    position: absolute;
+    inset: 0;
+    background-image: var(--portfolio-image);
+    background-size: var(--portfolio-size);
+    background-position: var(--portfolio-position);
+    background-repeat: no-repeat;
+    transition: transform var(--transition-slow);
+  }
+
+  .portfolio-card:hover .portfolio-shot {
+    transform: scale(1.04);
+  }
+
+  .portfolio-info {
+    position: absolute;
+    left: var(--space-lg);
+    right: var(--space-lg);
+    bottom: var(--space-lg);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-md);
+    align-items: center;
+    min-height: 96px;
+    padding: var(--space-md);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .portfolio-info h3 {
+    margin: 0 0 0.1rem;
+    color: #556071;
+    font-size: var(--fs-sm);
+    line-height: 1.1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .portfolio-info p {
+    color: #6d7480;
+    font-size: 0.78rem;
+    line-height: 1.12;
+  }
+
+  .portfolio-info span {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 1.65rem;
+    line-height: 1;
+    box-shadow: 0 10px 24px rgba(142, 36, 204, 0.28);
+  }
+
+  .package-section,
+  .final-cta {
+    background: var(--color-bg-dark);
+    color: #fff;
+  }
+
+  .package-section h2,
+  .final-cta h2 {
+    color: #fff;
+  }
+
+  .package-section .section-copy p {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .package-list {
+    display: grid;
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+  }
+
+  .package-list span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .package-list span::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    flex: 0 0 auto;
+  }
+
+  .package-media img {
+    max-height: 520px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.06);
+    padding: var(--space-xl);
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .presence-section {
+    background: #fff;
+  }
+
+  .presence-grid {
+    display: grid;
+    grid-template-columns: 0.82fr 1fr;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .presence-copy h3 {
+    color: var(--color-text);
+    font-size: var(--fs-md);
+    letter-spacing: 0;
+    line-height: 1.3;
+    margin-bottom: var(--space-xl);
+    text-transform: uppercase;
+  }
+
+  .presence-copy h3 span {
+    color: var(--color-primary);
+  }
+
+  .presence-copy p {
+    color: var(--color-text-muted);
+    line-height: var(--lh-relaxed);
+    margin-bottom: var(--space-md);
+  }
+
+  .presence-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 48px;
+    margin-top: var(--space-xl);
+    padding: 0.85rem 1.15rem;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: #fff;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+    box-shadow: 0 12px 28px rgba(142, 36, 204, 0.24);
+  }
+
+  .presence-button:hover {
+    background: var(--color-primary-medium);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  .presence-button strong {
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  .presence-map img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: contain;
+  }
+
+  .faq-grid {
+    align-items: start;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .faq-list summary {
+    cursor: pointer;
+    font-weight: var(--fw-bold);
+    color: var(--color-text);
+  }
+
+  .faq-list p {
+    color: var(--color-text-muted);
+    line-height: var(--lh-relaxed);
+    margin-top: var(--space-md);
+  }
+
+  .final-cta {
+    padding: var(--space-4xl) 0;
+  }
+
+  .final-cta-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  @media (max-width: 1024px) {
+    .site-hero-inner,
+    .split-grid,
+    .faq-grid,
+    .final-cta-inner,
+    .presence-grid,
+    .benefits-grid,
+    .process-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-banner {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      text-align: left;
+      justify-items: stretch;
+    }
+
+    .pricing-value {
+      justify-self: stretch;
+      padding: var(--space-lg) 0;
+      border-left: 0;
+      border-right: 0;
+      border-top: 1px solid rgba(142, 36, 204, 0.12);
+      border-bottom: 1px solid rgba(142, 36, 204, 0.12);
+    }
+
+    .pricing-copy p {
+      max-width: 560px;
+    }
+
+    .pricing-button {
+      justify-self: stretch;
+    }
+  }
+
+  @media (min-width: 1025px) and (max-height: 820px) {
+    .site-hero {
+      padding: calc(var(--navbar-height) + var(--space-xl)) 0 var(--space-2xl);
+    }
+
+    .site-hero-inner {
+      gap: var(--space-3xl);
+    }
+
+    .site-hero-copy h1 {
+      font-size: clamp(3.5rem, 4.2vw, 4.25rem);
+      line-height: 1;
+    }
+
+    .site-hero-copy p {
+      font-size: var(--fs-md);
+      line-height: 1.55;
+      margin-top: var(--space-md);
+      max-width: 640px;
+    }
+
+    .mini-label {
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-actions {
+      margin-top: var(--space-xl);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .site-hero {
+      padding: calc(var(--navbar-height) + var(--space-2xl)) 0 var(--space-2xl);
+    }
+
+    .site-hero-inner,
+    .split-grid,
+    .faq-grid,
+    .final-cta-inner,
+    .presence-grid,
+    .benefits-grid,
+    .portfolio-grid,
+    .process-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .site-hero-copy h1 {
+      font-size: clamp(2.35rem, 12vw, 3.6rem);
+    }
+
+    .site-hero-copy > .mini-label {
+      display: none;
+    }
+
+    .hero-actions {
+      width: 100%;
+    }
+
+    .primary-action,
+    .secondary-action,
+    .purple-button,
+    .pricing-button,
+    .site-hero-btn,
+    .site-hero-whatsapp {
+      width: 100%;
+    }
+
+    .benefits-grid article {
+      min-height: auto;
+    }
+
+    .portfolio-card {
+      min-height: 330px;
+    }
+  }
+</style>

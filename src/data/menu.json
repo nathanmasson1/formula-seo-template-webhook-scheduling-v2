@@ -1,0 +1,31 @@
+{
+    "items": [
+        {
+            "label": "Home",
+            "href": "/",
+            "showCategories": false
+        },
+        {
+            "label": "Criação de Sites",
+            "href": "/criacao-de-sites",
+            "showCategories": false
+        },
+        {
+            "label": "Backlinks",
+            "href": "/backlinks"
+        },
+        {
+            "label": "Blog",
+            "href": "/blog",
+            "showCategories": false
+        },
+        {
+            "label": "Sobre",
+            "href": "/sobre"
+        },
+        {
+            "label": "Contato",
+            "href": "/contato"
+        }
+    ]
+}

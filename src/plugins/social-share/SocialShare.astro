@@ -1,0 +1,267 @@
+---
+/**
+ * SocialShare.astro — Plugin Social Share
+ *
+ * Renderiza título + botões de compartilhamento com URLs funcionais.
+ * Lê configurações de pluginsConfig.socialShare.
+ */
+import { readData } from '../../lib/readData';
+
+interface Props {
+  title?: string;
+  context?: 'post-bottom' | 'author-box';
+}
+
+const { title = '', context = 'post-bottom' } = Astro.props;
+
+const pluginsConfig = readData('pluginsConfig.json', {}) as any;
+const shareConfig = pluginsConfig?.socialShare;
+const enabled = shareConfig?.enabled !== false;
+const style = shareConfig?.style || 'icon';
+const sectionTitle: string = shareConfig?.sectionTitle || 'Compartilhe nas redes sociais';
+const platforms: string[] = shareConfig?.platforms || [
+  'facebook', 'twitter', 'whatsapp', 'linkedin', 'telegram', 'copy'
+];
+
+const platformDefs: Record<string, { icon: string; label: string; color: string; shadow: string }> = {
+  facebook: {
+    label: 'Facebook',
+    color: '#1877f2',
+    shadow: 'rgba(24,119,242,.28)',
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="currentColor" d="M14.2 8.1h2.6V4h-3.3c-3.5 0-5.3 2.1-5.3 5.1v2.1H5.7v4.1h2.5V21h4.4v-5.7h3.3l.6-4.1h-3.9V9.5c0-.9.4-1.4 1.6-1.4Z"/></svg>',
+  },
+  twitter: {
+    label: 'Twitter/X',
+    color: '#111827',
+    shadow: 'rgba(17,24,39,.26)',
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="currentColor" d="M4.4 4h4.9l3.4 4.9L17 4h2.8l-5.8 6.7 6.2 9.3h-4.9l-3.8-5.6L6.7 20H3.9l6.4-7.4L4.4 4Zm3.7 2.1 8.4 11.8h1.6L9.7 6.1H8.1Z"/></svg>',
+  },
+  whatsapp: {
+    label: 'WhatsApp',
+    color: '#25d366',
+    shadow: 'rgba(37,211,102,.3)',
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="currentColor" d="M12.1 3.5a8.3 8.3 0 0 0-7.2 12.4L3.8 20.5l4.7-1.1a8.3 8.3 0 1 0 3.6-15.9Zm0 14.8c-1.3 0-2.5-.4-3.6-1l-.3-.2-2.2.5.5-2.1-.2-.4a6.4 6.4 0 1 1 5.8 3.2Zm3.6-4.8c-.2-.1-1.1-.5-1.3-.6-.2-.1-.4-.1-.5.1l-.5.7c-.1.2-.3.2-.5.1-1.4-.7-2.3-1.5-3-2.8-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.1-.4l-.6-1.4c-.1-.4-.3-.4-.5-.4H9c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.6 4 3.6.6.3 1.1.4 1.4.5.6.2 1.1.1 1.5.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1.1 0-.1-.2-.2-.4-.3Z"/></svg>',
+  },
+  linkedin: {
+    label: 'LinkedIn',
+    color: '#0a66c2',
+    shadow: 'rgba(10,102,194,.28)',
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="currentColor" d="M6.8 8.8H3.6V20h3.2V8.8ZM5.2 4C4.1 4 3.4 4.7 3.4 5.7s.7 1.7 1.8 1.7S7 6.7 7 5.7 6.3 4 5.2 4Zm6.8 4.8H8.8V20H12v-6.2c0-1.6.8-2.5 2-2.5 1.1 0 1.7.8 1.7 2.5V20h3.2v-6.6c0-3.2-1.7-4.8-4-4.8-1.8 0-2.6 1-3 1.7V8.8Z"/></svg>',
+  },
+  telegram: {
+    label: 'Telegram',
+    color: '#229ed9',
+    shadow: 'rgba(34,158,217,.28)',
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="currentColor" d="M20.7 4.4 3.8 11c-1.1.4-1.1 1.1-.2 1.4l4.3 1.4 1.7 5.2c.2.7.4.9.8.9.3 0 .5-.1.8-.4l2.4-2.3 4.5 3.3c.8.4 1.3.2 1.5-.8L22 5.8c.3-1.1-.4-1.6-1.3-1.4ZM18 7.6l-8.2 7.5-.3 3-1.2-4 9.8-6.2c.4-.3.3-.5-.1-.3Z"/></svg>',
+  },
+  pinterest: {
+    label: 'Pinterest',
+    color: '#e60023',
+    shadow: 'rgba(230,0,35,.28)',
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="currentColor" d="M12.1 3.5c-4.5 0-7.1 3-7.1 6.3 0 2 .9 3.6 2.3 4.2.3.1.5 0 .6-.3l.2-.9c.1-.3 0-.4-.2-.7-.5-.6-.8-1.3-.8-2.3 0-2.8 2.1-5.4 5.6-5.4 3 0 4.7 1.8 4.7 4.3 0 3.2-1.4 5.9-3.6 5.9-1.2 0-2.1-1-1.8-2.2.3-1.5 1-3.1 1-4.2 0-1-.5-1.8-1.6-1.8-1.3 0-2.3 1.3-2.3 3.1 0 1.1.4 1.9.4 1.9l-1.6 6.7c-.3 1.2-.2 2.5-.1 3.4h.1c.5-.7 1.2-1.8 1.5-3l.8-3.1c.4.8 1.5 1.4 2.7 1.4 3.5 0 6-3.2 6-7.6 0-3.2-2.8-5.7-6.8-5.7Z"/></svg>',
+  },
+  copy: {
+    label: 'Copiar',
+    color: '#8e24cc',
+    shadow: 'rgba(142,36,204,.28)',
+    icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="currentColor" d="M9.4 14.6a1.4 1.4 0 0 1 0-2l3.2-3.2a1.4 1.4 0 0 1 2 2l-.6.6 1.7 1.7.6-.6a3.8 3.8 0 1 0-5.4-5.4l-3.2 3.2a3.8 3.8 0 0 0 0 5.4l1.7-1.7Zm5.2-5.2a1.4 1.4 0 0 1 0 2l-3.2 3.2a1.4 1.4 0 0 1-2-2l.6-.6-1.7-1.7-.6.6a3.8 3.8 0 1 0 5.4 5.4l3.2-3.2a3.8 3.8 0 0 0 0-5.4l-1.7 1.7Z"/></svg>',
+  },
+};
+
+const activePlatforms = platforms.filter(p => platformDefs[p]);
+---
+
+{enabled && activePlatforms.length > 0 && (
+  <div class="walker-share-wrap" data-context={context}>
+    {sectionTitle && (
+      <p class="walker-share-title">{sectionTitle}</p>
+    )}
+    <ul
+      class="walker-share-list"
+      data-style={style}
+    >
+      {activePlatforms.map(p => {
+        const def = platformDefs[p];
+        return (
+          <li class="list-inline-item" data-platform={p}>
+            <a
+              href="#"
+              class="walker-share-btn"
+              style={`--share-color: ${def.color}; --share-shadow: ${def.shadow};`}
+              target={p === 'copy' ? undefined : '_blank'}
+              rel={p === 'copy' ? undefined : 'nofollow noopener'}
+              aria-label={`Compartilhar no ${def.label}`}
+              title={def.label}
+            >
+              <span class="share-icon" aria-hidden="true" set:html={def.icon} />
+              {(style === 'label' || style === 'both') && (
+                <span class="share-label">{def.label}</span>
+              )}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+)}
+
+<style>
+  .walker-share-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin: var(--space-2xl) 0;
+  }
+
+  .walker-share-wrap[data-context="post-bottom"] {
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .walker-share-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+    margin: 0;
+    line-height: 1;
+  }
+
+  .walker-share-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .walker-share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 42px;
+    min-width: 42px;
+    padding: 0.6rem 0.95rem;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: var(--share-color);
+    color: #fff;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+    text-decoration: none;
+    box-shadow: 0 12px 24px var(--share-shadow);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+  }
+
+  .walker-share-list[data-style="icon"] .walker-share-btn {
+    padding: 0;
+  }
+
+  .walker-share-list[data-style="label"] .share-icon {
+    display: none;
+  }
+
+  .walker-share-btn:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px var(--share-shadow);
+    filter: saturate(1.12) brightness(1.04);
+  }
+
+  .share-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    line-height: 0;
+    flex: 0 0 auto;
+    color: #fff;
+  }
+
+  :global(.share-icon svg) {
+    width: 18px;
+    height: 18px;
+    color: #fff;
+    fill: #fff !important;
+    display: block;
+  }
+
+  :global(.share-icon svg path) {
+    fill: #fff !important;
+  }
+
+  .share-label {
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    .walker-share-wrap,
+    .walker-share-wrap[data-context="post-bottom"] {
+      align-items: flex-start;
+    }
+
+    .walker-share-list {
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  function initShareButtons() {
+    var lists = document.querySelectorAll('.walker-share-list');
+    lists.forEach(function(list) {
+      var pageUrl = encodeURIComponent(window.location.href);
+      var pageTitle = encodeURIComponent(document.title);
+      var btns = list.querySelectorAll('.walker-share-btn');
+      btns.forEach(function(btn) {
+        var li = btn.closest('[data-platform]') as HTMLElement;
+        var platform = li?.dataset.platform;
+        if (!platform) return;
+
+        var urls: Record<string, string> = {
+          facebook:  'https://www.facebook.com/sharer/sharer.php?u=' + pageUrl,
+          twitter:   'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle,
+          whatsapp:  'https://wa.me/?text=' + pageTitle + '%20' + pageUrl,
+          linkedin:  'https://www.linkedin.com/sharing/share-offsite/?url=' + pageUrl,
+          telegram:  'https://t.me/share/url?url=' + pageUrl + '&text=' + pageTitle,
+          pinterest: 'https://pinterest.com/pin/create/button/?url=' + pageUrl,
+          copy:      'copy',
+        };
+
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var url = urls[platform!];
+          if (url === 'copy') {
+            navigator.clipboard?.writeText(window.location.href).then(function() {
+              var label = (btn as HTMLElement).querySelector('.share-label');
+              var icon = (btn as HTMLElement).querySelector('.share-icon');
+              var original = label ? label.textContent : null;
+              var originalIcon = icon ? icon.innerHTML : null;
+              if (label) label.textContent = 'Copiado!';
+              if (icon && !label) {
+                icon.textContent = 'OK';
+                setTimeout(function() { if (icon && originalIcon) icon.innerHTML = originalIcon; }, 2000);
+              }
+              setTimeout(function() { if (label) label.textContent = original; }, 2000);
+            });
+          } else {
+            window.open(url, '_blank', 'noopener,width=600,height=450');
+          }
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initShareButtons);
+  } else {
+    initShareButtons();
+  }
+})();
+</script>

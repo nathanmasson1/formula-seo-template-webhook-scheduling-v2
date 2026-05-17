@@ -1,0 +1,9 @@
+---
+export const prerender = false;
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import BacklinksEditor from '../../components/admin/BacklinksEditor';
+---
+
+<AdminLayout title="Backlinks" activeSection="backlinks">
+  <BacklinksEditor client:load />
+</AdminLayout>

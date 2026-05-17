@@ -1,0 +1,26 @@
+---
+export const prerender = false;
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import CmsDashboard from '../../components/admin/CmsDashboard';
+import { getCollection } from 'astro:content';
+import { readData } from '../../lib/readData';
+
+const posts = await getCollection('blog');
+const totalPosts = posts.length;
+const draftPosts = posts.filter((post) => post.data.draft === true).length;
+const authors = readData<any[]>('authors.json', []);
+const totalAuthors = Array.isArray(authors) ? authors.length : 0;
+const initialStats = {
+    totalPosts,
+    publishedPosts: Math.max(0, totalPosts - draftPosts),
+    draftPosts,
+    totalAuthors,
+};
+---
+<AdminLayout title="Dashboard" activeSection="dashboard">
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-slate-900">Dashboard</h1>
+        <p class="text-slate-500 mt-1">Bem-vindo ao painel admin do seu blog.</p>
+    </div>
+    <CmsDashboard client:load initialStats={initialStats} />
+</AdminLayout>

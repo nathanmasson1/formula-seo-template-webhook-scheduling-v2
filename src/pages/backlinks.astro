@@ -1,0 +1,1645 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { readData } from '../lib/readData';
+import { socialLinkAttrs } from '../lib/socialLinks';
+
+const data = readData('backlinks.json') || {};
+const seo = data.seo || {};
+const hero = data.hero || {};
+const problem = data.problem || {};
+const plans = data.plans || {};
+const differentials = data.differentials || {};
+const recommendation = data.recommendation || {};
+const testimonials = data.testimonials || {};
+const testimonialItems = testimonials.items || [];
+const testimonialGroups = [];
+for (let i = 0; i < testimonialItems.length; i += 3) {
+  testimonialGroups.push(testimonialItems.slice(i, i + 3));
+}
+const testimonialMobileGroups = testimonialItems.map((item: any) => [item]);
+const support = data.support || {};
+const team = data.team || {};
+const niches = data.niches || {};
+const faq = data.faq || {};
+const cta = data.cta || {};
+const planItems = plans.items || [];
+const faqItems = faq.items || [];
+const heroVisual = hero.visual || {};
+const heroVisualItems = heroVisual.items || [
+  { number: '01', label: 'Conteúdo publicado' },
+  { number: '02', label: 'Contexto do nicho' },
+  { number: '03', label: 'Mais força no Google' },
+];
+---
+
+<BaseLayout
+  title={seo.title || 'Comprar Backlinks'}
+  description={seo.description || 'Backlinks orgânicos de sites reais e confiáveis.'}
+  image={seo.image || undefined}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item: any) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  })} />
+
+  <section class="cb-hero">
+    <div class="cb-hero-bg" aria-hidden="true">
+      <div class="cb-hero-gradient"></div>
+      <div class="cb-hero-pattern"></div>
+    </div>
+    <div class="container cb-hero-inner">
+      <div class="cb-hero-copy">
+        <div class="cb-hero-badge">
+          <span></span>
+          {hero.eyebrow || 'Link Building & SEO'}
+        </div>
+        <h1>{hero.title}</h1>
+        <p>{hero.subtitle}</p>
+        <div class="cb-hero-actions">
+          <a class="whatsapp-button" href={hero.primaryCta?.href} {...socialLinkAttrs(hero.primaryCta?.href, hero.primaryCta?.text || 'Falar no WhatsApp')}>
+            <span class="whatsapp-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32">
+                <path d="M16.04 3.2c-7.02 0-12.72 5.7-12.72 12.72 0 2.24.59 4.42 1.7 6.35L3.2 28.8l6.68-1.75a12.67 12.67 0 0 0 6.16 1.57c7.02 0 12.72-5.7 12.72-12.72S23.06 3.2 16.04 3.2Zm0 23.28c-1.93 0-3.82-.52-5.47-1.5l-.39-.23-3.96 1.04 1.06-3.86-.25-.4a10.5 10.5 0 0 1-1.58-5.61c0-5.84 4.75-10.59 10.59-10.59s10.59 4.75 10.59 10.59-4.75 10.56-10.59 10.56Zm5.8-7.93c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.55-.08-.16-.71-1.72-.98-2.35-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.4-.29.32-1.11 1.08-1.11 2.64s1.14 3.07 1.3 3.28c.16.21 2.25 3.43 5.44 4.81.76.33 1.36.53 1.82.68.76.24 1.46.21 2.01.13.61-.09 1.88-.77 2.14-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z" fill="currentColor"></path>
+              </svg>
+            </span>
+            {hero.primaryCta?.text}
+          </a>
+          {hero.secondaryCta?.href && (
+            <a class="hero-secondary-button" href={hero.secondaryCta.href}>
+              {hero.secondaryCta.text}
+            </a>
+          )}
+        </div>
+        {(hero.stats || []).length > 0 && (
+          <div class="cb-hero-stats">
+            {(hero.stats || []).slice(0, 3).map((stat: any, index: number) => (
+              <>
+                {index > 0 && <span class="cb-hero-stat-divider"></span>}
+                <div class="cb-hero-stat">
+                  <strong>{stat.number}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              </>
+            ))}
+          </div>
+        )}
+      </div>
+      <div class="hero-authority-visual" aria-label="Fluxo de autoridade para backlinks">
+        <div class="hero-authority-kicker">{heroVisual.label || 'Operação de autoridade'}</div>
+        <div class="hero-authority-card hero-authority-main">
+          <span>{heroVisual.title || 'Autoridade'}</span>
+          <strong>{heroVisual.text || 'Links reais apontando para páginas estratégicas'}</strong>
+        </div>
+        <div class="hero-authority-path" aria-hidden="true"></div>
+        <div class="hero-authority-grid">
+          {heroVisualItems.map((item: any) => (
+            <div class="hero-authority-card">
+              <span>{item.number}</span>
+              <strong>{item.label}</strong>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem-section section">
+    <div class="container split">
+      <div>
+        {problem.label && <span class="mini-label purple">{problem.label}</span>}
+        <h2>{problem.title}</h2>
+        <p>{problem.text}</p>
+        <div class="problem-list">
+          {(problem.points || []).map((point: string) => <span>{point}</span>)}
+        </div>
+      </div>
+      {problem.image && <img src={problem.image} alt="" loading="lazy" />}
+    </div>
+  </section>
+
+  <section class="plans-section section" id="planos">
+    <div class="container">
+      <div class="center-heading">
+        {plans.label && <span class="mini-label purple">{plans.label}</span>}
+        <h2>{plans.title}</h2>
+        <p>{plans.subtitle}</p>
+      </div>
+      <div class="plans-grid">
+        {planItems.map((plan: any) => (
+          <article class:list={['plan-card', { featured: plan.featured }]}>
+            <span class="discount">{plan.discount}</span>
+            <h3>{plan.name}</h3>
+            <div class="price"><del>{plan.oldPrice}</del><strong>{plan.price}</strong></div>
+            <ul>
+              {(plan.features || []).map((feature: string) => <li>{feature}</li>)}
+            </ul>
+            <a href={plan.ctaHref} {...socialLinkAttrs(plan.ctaHref, plan.ctaText || 'Comprar pelo WhatsApp')}>{plan.ctaText}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="strategy-section section">
+    <div class="container">
+      <div class="center-heading">
+        <span class="mini-label gold">{differentials.label}</span>
+        <h2>{differentials.title}</h2>
+      </div>
+      <div class="strategy-grid">
+        {(differentials.items || []).map((item: any) => (
+          <article>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="center-cta">
+        <a class="whatsapp-button" href={differentials.ctaHref} {...socialLinkAttrs(differentials.ctaHref, differentials.ctaText || 'Falar no WhatsApp')}>
+          <span class="whatsapp-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32">
+              <path d="M16.04 3.2c-7.02 0-12.72 5.7-12.72 12.72 0 2.24.59 4.42 1.7 6.35L3.2 28.8l6.68-1.75a12.67 12.67 0 0 0 6.16 1.57c7.02 0 12.72-5.7 12.72-12.72S23.06 3.2 16.04 3.2Zm0 23.28c-1.93 0-3.82-.52-5.47-1.5l-.39-.23-3.96 1.04 1.06-3.86-.25-.4a10.5 10.5 0 0 1-1.58-5.61c0-5.84 4.75-10.59 10.59-10.59s10.59 4.75 10.59 10.59-4.75 10.56-10.59 10.56Zm5.8-7.93c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.55-.08-.16-.71-1.72-.98-2.35-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.4-.29.32-1.11 1.08-1.11 2.64s1.14 3.07 1.3 3.28c.16.21 2.25 3.43 5.44 4.81.76.33 1.36.53 1.82.68.76.24 1.46.21 2.01.13.61-.09 1.88-.77 2.14-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z" fill="currentColor"></path>
+            </svg>
+          </span>
+          {differentials.ctaText}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="recommend-section section">
+    <div class="container split">
+      {recommendation.image && <img src={recommendation.image} alt="" loading="lazy" />}
+      <div>
+        <span class="mini-label purple">{recommendation.label}</span>
+        <h2>{recommendation.title}</h2>
+        <p>{recommendation.text}</p>
+        <a class="purple-button" href={recommendation.ctaHref} {...socialLinkAttrs(recommendation.ctaHref, recommendation.ctaText || 'Abrir rede social')}>{recommendation.ctaText}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="plans-section section compact">
+    <div class="container">
+      <div class="plans-grid">
+        {planItems.map((plan: any) => (
+          <article class:list={['plan-card', { featured: plan.featured }]}>
+            <span class="discount">{plan.discount}</span>
+            <h3>{plan.name}</h3>
+            <div class="price"><del>{plan.oldPrice}</del><strong>{plan.price}</strong></div>
+            <ul>
+              {(plan.features || []).map((feature: string) => <li>{feature}</li>)}
+            </ul>
+            <a href={plan.ctaHref} {...socialLinkAttrs(plan.ctaHref, plan.ctaText || 'Comprar pelo WhatsApp')}>{plan.ctaText}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials-section section">
+    <div class="container">
+      <div class="center-heading">
+        <span class="mini-label purple">{testimonials.label}</span>
+        <h2>{testimonials.title}</h2>
+        <p>{testimonials.subtitle}</p>
+      </div>
+      <div class="testimonial-carousel testimonial-carousel--desktop" data-testimonial-carousel aria-label="Depoimentos de clientes">
+        <div class="testimonial-window">
+          <div class="testimonial-track">
+            {testimonialGroups.map((group: any[], groupIndex: number) => (
+              <div class="testimonial-slide" aria-label={`Depoimentos ${groupIndex + 1} de ${testimonialGroups.length}`}>
+                {group.map((item: any) => (
+                  <figure class="testimonial-print">
+                    {(item.image || item.avatar) && (
+                      <img
+                        src={item.image || item.avatar}
+                        alt={item.alt || item.name || 'Print de depoimento no WhatsApp'}
+                        loading="lazy"
+                      />
+                    )}
+                    {(item.name || item.role || item.text) && (
+                      <figcaption>
+                        {item.name && <strong>{item.name}</strong>}
+                        {item.role && <span>{item.role}</span>}
+                        {item.text && <p>{item.text}</p>}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        {testimonialGroups.length > 1 && (
+          <div class="testimonial-controls" aria-label="Controles do carrossel de depoimentos">
+            <button type="button" class="testimonial-arrow" data-testimonial-prev aria-label="Depoimentos anteriores">‹</button>
+            <div class="testimonial-dots">
+              {testimonialGroups.map((_: any[], index: number) => (
+                <button
+                  type="button"
+                  class:list={['testimonial-dot', { active: index === 0 }]}
+                  data-testimonial-dot={index}
+                  aria-label={`Ir para grupo ${index + 1}`}
+                />
+              ))}
+            </div>
+            <button type="button" class="testimonial-arrow" data-testimonial-next aria-label="Próximos depoimentos">›</button>
+          </div>
+        )}
+      </div>
+
+      <div class="testimonial-carousel testimonial-carousel--mobile" data-testimonial-carousel aria-label="Depoimentos de clientes no mobile">
+        <div class="testimonial-window">
+          <div class="testimonial-track">
+            {testimonialMobileGroups.map((group: any[], groupIndex: number) => (
+              <div class="testimonial-slide" aria-label={`Depoimento ${groupIndex + 1} de ${testimonialMobileGroups.length}`}>
+                {group.map((item: any) => (
+                  <figure class="testimonial-print">
+                    {(item.image || item.avatar) && (
+                      <img
+                        src={item.image || item.avatar}
+                        alt={item.alt || item.name || 'Print de depoimento no WhatsApp'}
+                        loading="lazy"
+                      />
+                    )}
+                    {(item.name || item.role || item.text) && (
+                      <figcaption>
+                        {item.name && <strong>{item.name}</strong>}
+                        {item.role && <span>{item.role}</span>}
+                        {item.text && <p>{item.text}</p>}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        {testimonialMobileGroups.length > 1 && (
+          <div class="testimonial-controls" aria-label="Controles do carrossel de depoimentos no mobile">
+            <button type="button" class="testimonial-arrow" data-testimonial-prev aria-label="Depoimento anterior">‹</button>
+            <div class="testimonial-dots">
+              {testimonialMobileGroups.map((_: any[], index: number) => (
+                <button
+                  type="button"
+                  class:list={['testimonial-dot', { active: index === 0 }]}
+                  data-testimonial-dot={index}
+                  aria-label={`Ir para depoimento ${index + 1}`}
+                />
+              ))}
+            </div>
+            <button type="button" class="testimonial-arrow" data-testimonial-next aria-label="Próximo depoimento">›</button>
+          </div>
+        )}
+      </div>
+
+      <script is:inline>
+        (() => {
+          const carousels = document.querySelectorAll('[data-testimonial-carousel]');
+          carousels.forEach((carousel) => {
+            const track = carousel.querySelector('.testimonial-track');
+            const slides = Array.from(carousel.querySelectorAll('.testimonial-slide'));
+            const dots = Array.from(carousel.querySelectorAll('[data-testimonial-dot]'));
+            const prev = carousel.querySelector('[data-testimonial-prev]');
+            const next = carousel.querySelector('[data-testimonial-next]');
+            if (!track || slides.length <= 1) return;
+
+            let active = 0;
+            let timer = 0;
+
+            const goTo = (index) => {
+              active = (index + slides.length) % slides.length;
+              track.style.transform = `translateX(-${active * 100}%)`;
+              dots.forEach((dot, dotIndex) => {
+                dot.classList.toggle('active', dotIndex === active);
+                dot.setAttribute('aria-current', dotIndex === active ? 'true' : 'false');
+              });
+            };
+
+            const stop = () => {
+              if (timer) window.clearInterval(timer);
+            };
+
+            const start = () => {
+              stop();
+              timer = window.setInterval(() => goTo(active + 1), 4500);
+            };
+
+            prev?.addEventListener('click', () => {
+              goTo(active - 1);
+              start();
+            });
+            next?.addEventListener('click', () => {
+              goTo(active + 1);
+              start();
+            });
+            dots.forEach((dot, index) => {
+              dot.addEventListener('click', () => {
+                goTo(index);
+                start();
+              });
+            });
+            carousel.addEventListener('mouseenter', stop);
+            carousel.addEventListener('mouseleave', start);
+
+            goTo(0);
+            start();
+          });
+        })();
+      </script>
+    </div>
+  </section>
+
+  <section class="support-section section">
+    <div class="container split">
+      <div>
+        <span class="mini-label gold">{support.label}</span>
+        <h2>{support.title}</h2>
+        <p>{support.text}</p>
+        <ul class="support-list">
+          {(support.bullets || []).map((bullet: string) => <li>{bullet}</li>)}
+        </ul>
+        <a class="whatsapp-button" href={support.ctaHref} {...socialLinkAttrs(support.ctaHref, support.ctaText || 'Falar no WhatsApp')}>
+          <span class="whatsapp-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32">
+              <path d="M16.04 3.2c-7.02 0-12.72 5.7-12.72 12.72 0 2.24.59 4.42 1.7 6.35L3.2 28.8l6.68-1.75a12.67 12.67 0 0 0 6.16 1.57c7.02 0 12.72-5.7 12.72-12.72S23.06 3.2 16.04 3.2Zm0 23.28c-1.93 0-3.82-.52-5.47-1.5l-.39-.23-3.96 1.04 1.06-3.86-.25-.4a10.5 10.5 0 0 1-1.58-5.61c0-5.84 4.75-10.59 10.59-10.59s10.59 4.75 10.59 10.59-4.75 10.56-10.59 10.56Zm5.8-7.93c-.32-.16-1.88-.93-2.17-1.03-.29-.11-.5-.16-.71.16-.21.32-.82 1.03-1 1.24-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57-.94-.84-1.58-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.55-.08-.16-.71-1.72-.98-2.35-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.4-.29.32-1.11 1.08-1.11 2.64s1.14 3.07 1.3 3.28c.16.21 2.25 3.43 5.44 4.81.76.33 1.36.53 1.82.68.76.24 1.46.21 2.01.13.61-.09 1.88-.77 2.14-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.37Z" fill="currentColor"></path>
+            </svg>
+          </span>
+          {support.ctaText}
+        </a>
+      </div>
+      {support.image && <img src={support.image} alt="" loading="lazy" />}
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container stats-grid" data-countup-stats>
+      {(hero.stats || []).map((stat: any) => (
+        <div>
+          <strong data-countup-value={stat.number}>{stat.number}</strong>
+          <span>{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const stats = document.querySelector('[data-countup-stats]');
+      if (!stats) return;
+      const numbers = Array.from(stats.querySelectorAll('[data-countup-value]'));
+      if (!numbers.length) return;
+
+      const parseNumber = (value) => {
+        const match = String(value).match(/^(\D*)([\d.,]+)(.*)$/);
+        if (!match) return null;
+        const rawNumber = match[2].replace(/\./g, '').replace(',', '.');
+        const target = Number(rawNumber);
+        if (!Number.isFinite(target)) return null;
+        return { prefix: match[1], target, suffix: match[3] };
+      };
+
+      const formatValue = ({ prefix, target, suffix }, progress) => {
+        const value = Math.round(target * progress);
+        return `${prefix}${value.toLocaleString('pt-BR')}${suffix}`;
+      };
+
+      const animate = () => {
+        const duration = 1400;
+        const start = performance.now();
+        const parsed = numbers.map((el) => ({ el, data: parseNumber(el.getAttribute('data-countup-value') || el.textContent || '') }));
+
+        const tick = (now) => {
+          const linear = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - linear, 3);
+          parsed.forEach(({ el, data }) => {
+            if (data) el.textContent = formatValue(data, eased);
+          });
+          if (linear < 1) requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        animate();
+      }, { threshold: 0.35 });
+
+      observer.observe(stats);
+    })();
+  </script>
+
+  <section class="team-section section">
+    <div class="container">
+      <div class="center-heading">
+        <span class="mini-label purple">{team.label}</span>
+        <h2>{team.title}</h2>
+      </div>
+      <div class="team-grid">
+        {(team.items || []).map((member: any) => (
+          <article>
+            {member.image && <img src={member.image} alt="" loading="lazy" />}
+            <h3>{member.name}</h3>
+            <p>{member.role}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="niches-section section">
+    <div class="container split">
+      <div>
+        {niches.label && <span class="mini-label purple">{niches.label}</span>}
+        <h2>{niches.title}</h2>
+        <p>{niches.subtitle}</p>
+        <div class="niche-list">
+          {(niches.items || []).map((item: string) => <span>{item}</span>)}
+        </div>
+        <a class="purple-button" href={niches.ctaHref} {...socialLinkAttrs(niches.ctaHref, niches.ctaText || 'Abrir rede social')}>{niches.ctaText}</a>
+      </div>
+      {niches.image && <img src={niches.image} alt="" loading="lazy" />}
+    </div>
+  </section>
+
+  <section class="plans-section section compact">
+    <div class="container">
+      <div class="plans-grid">
+        {planItems.map((plan: any) => (
+          <article class:list={['plan-card', { featured: plan.featured }]}>
+            <span class="discount">{plan.discount}</span>
+            <h3>{plan.name}</h3>
+            <div class="price"><del>{plan.oldPrice}</del><strong>{plan.price}</strong></div>
+            <ul>
+              {(plan.features || []).map((feature: string) => <li>{feature}</li>)}
+            </ul>
+            <a href={plan.ctaHref} {...socialLinkAttrs(plan.ctaHref, plan.ctaText || 'Comprar pelo WhatsApp')}>{plan.ctaText}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section section">
+    <div class="container faq-grid">
+      <div>
+        <span class="mini-label purple">{faq.label}</span>
+        <h2>{faq.title}</h2>
+        <p>{faq.subtitle}</p>
+      </div>
+      <div class="faq-list">
+        {faqItems.map((item: any) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="final-section section">
+    <div class="container final-box">
+      <h2>{cta.title}</h2>
+      <p>{cta.text}</p>
+      <div>
+        <a class="whatsapp-button" href={cta.primaryCta?.href} {...socialLinkAttrs(cta.primaryCta?.href, cta.primaryCta?.text || 'Falar no WhatsApp')}>{cta.primaryCta?.text}</a>
+        <a class="purple-button" href={cta.secondaryCta?.href} {...socialLinkAttrs(cta.secondaryCta?.href, cta.secondaryCta?.text || 'Abrir rede social')}>{cta.secondaryCta?.text}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :global(body) {
+    background: var(--color-bg);
+  }
+
+  .cb-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--navbar-height);
+    color: #fff;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  .cb-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      linear-gradient(135deg, rgba(52, 8, 88, 0.92), rgba(142, 36, 204, 0.72)),
+      url('/images/marketing-agency-hero.jpg') center/cover;
+  }
+
+  .cb-hero-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 72% 22%, rgba(244, 182, 63, 0.18), transparent 26%),
+      linear-gradient(90deg, rgba(28, 5, 50, 0.94) 0%, rgba(91, 22, 145, 0.68) 52%, rgba(184, 45, 210, 0.4) 100%),
+      linear-gradient(180deg, rgba(20, 8, 36, 0.12), rgba(20, 8, 36, 0.78));
+  }
+
+  .cb-hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.045;
+    background-image:
+      linear-gradient(var(--color-primary) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-primary) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .cb-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: var(--space-4xl);
+    padding: var(--space-4xl) 0;
+  }
+
+  .cb-hero-copy {
+    max-width: 640px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cb-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    margin-bottom: var(--space-2xl);
+    padding: 0.4rem 1.2rem;
+    background: var(--color-primary-surface);
+    border: 1px solid var(--color-primary-lighter);
+    border-radius: var(--radius-full);
+    animation: fadeInUp 600ms var(--ease-out-expo) both;
+  }
+
+  .cb-hero-badge span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-primary-light);
+    box-shadow: 0 0 0 5px rgba(182, 62, 232, 0.12);
+  }
+
+  .cb-hero h1,
+  .center-heading h2,
+  .split h2,
+  .faq-grid h2,
+  .final-box h2 {
+    letter-spacing: 0;
+  }
+
+  .cb-hero h1 {
+    color: #fff;
+    font-size: var(--fs-hero);
+    margin-bottom: var(--space-xl);
+    line-height: 1.05;
+    max-width: 760px;
+    animation: fadeInUp 600ms var(--ease-out-expo) 100ms both;
+  }
+
+  .cb-hero p {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: var(--fs-md);
+    line-height: var(--lh-relaxed);
+    font-weight: var(--fw-light);
+    max-width: 590px;
+    margin: 0 0 var(--space-2xl);
+    animation: fadeInUp 600ms var(--ease-out-expo) 200ms both;
+  }
+
+  .cb-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-2xl);
+    animation: fadeInUp 600ms var(--ease-out-expo) 300ms both;
+  }
+
+  .hero-secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--radius-full);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 14px 30px rgba(16, 8, 33, 0.18);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    backdrop-filter: blur(16px);
+  }
+
+  .hero-secondary-button:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .cb-hero-stats {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    animation: fadeInUp 600ms var(--ease-out-expo) 400ms both;
+  }
+
+  .cb-hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cb-hero-stat strong {
+    color: #f4b63f;
+    font-family: var(--font-heading);
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-extrabold);
+    line-height: 1;
+  }
+
+  .cb-hero-stat span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+  }
+
+  .cb-hero-stat-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  .hero-authority-visual {
+    position: relative;
+    justify-self: end;
+    width: min(560px, 100%);
+    min-height: 500px;
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    animation: scaleIn 800ms var(--ease-out-expo) 300ms both;
+  }
+
+  .hero-authority-visual::before {
+    content: "";
+    position: absolute;
+    inset: 34px 38px 28px 38px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 28px 70px rgba(12, 4, 28, 0.3);
+    backdrop-filter: blur(18px);
+  }
+
+  .hero-authority-visual::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 86px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(244, 182, 63, 0.28), transparent 68%);
+    pointer-events: none;
+  }
+
+  .hero-authority-kicker {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    margin-bottom: var(--space-md);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+  }
+
+  .hero-authority-card {
+    position: relative;
+    z-index: 2;
+    padding: 1.15rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.96);
+    color: #261137;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    box-shadow: 0 18px 42px rgba(20, 8, 36, 0.18);
+  }
+
+  .hero-authority-card span {
+    display: block;
+    color: var(--color-primary);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-extrabold);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero-authority-card strong {
+    display: block;
+    color: #261137;
+    font-size: var(--fs-lg);
+    line-height: 1.2;
+  }
+
+  .hero-authority-main {
+    max-width: 350px;
+    margin: 0 auto var(--space-xl);
+    text-align: center;
+    background: #fff;
+  }
+
+  .hero-authority-path {
+    position: absolute;
+    left: 50%;
+    top: 160px;
+    bottom: 104px;
+    width: 2px;
+    background: linear-gradient(180deg, #f4b63f, rgba(255, 255, 255, 0.28));
+    transform: translateX(-50%);
+  }
+
+  .hero-authority-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .hero-authority-grid .hero-authority-card {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .hero-authority-grid .hero-authority-card span {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    border-radius: 8px;
+    background: var(--color-primary-surface);
+    letter-spacing: 0;
+  }
+
+  .hero-authority-grid .hero-authority-card strong {
+    font-size: var(--fs-base);
+  }
+
+  .dark-button,
+  .purple-button,
+  .plan-card a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    min-height: 48px;
+    padding: 0.9rem 1.35rem;
+    border-radius: 8px;
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+  }
+
+  .dark-button {
+    color: #fff;
+    background: var(--color-bg-dark-card);
+    box-shadow: 0 16px 34px rgba(16, 8, 33, 0.18);
+  }
+
+  .whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    min-height: 48px;
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--radius-full);
+    color: #fff;
+    background: linear-gradient(135deg, #25d366, #128c4a);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    box-shadow: 0 14px 30px rgba(37, 211, 102, 0.28);
+    transition:
+      transform 260ms var(--ease-out-expo),
+      box-shadow 260ms var(--ease-out-expo),
+      background 260ms var(--ease-out-expo);
+  }
+
+  .whatsapp-icon {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    color: #fff;
+    flex: 0 0 auto;
+  }
+
+  .whatsapp-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .whatsapp-button:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #2be36f, #0f7f42);
+    box-shadow: 0 18px 36px rgba(37, 211, 102, 0.34);
+  }
+
+  .purple-button,
+  .plan-card a {
+    color: #fff;
+    background: var(--color-primary);
+    transition:
+      transform 260ms var(--ease-out-expo),
+      box-shadow 260ms var(--ease-out-expo),
+      background 260ms var(--ease-out-expo);
+  }
+
+  .dark-button span {
+    font-size: 34px;
+    line-height: 1;
+  }
+
+  .mini-label {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-full);
+    padding: 0.45rem 0.9rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-accent-light);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-widest);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-lg);
+  }
+
+  .mini-label.purple {
+    background: var(--color-primary-surface);
+    border-color: var(--color-primary-lighter);
+    color: var(--color-primary);
+  }
+
+  .mini-label.gold {
+    background: var(--color-accent-surface);
+    border-color: var(--color-accent-light);
+    color: var(--color-accent-dark);
+  }
+
+  .problem-section,
+  .recommend-section,
+  .testimonials-section,
+  .team-section {
+    background: var(--color-bg-pure);
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: 1fr .9fr;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .split h2,
+  .center-heading h2,
+  .faq-grid h2 {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    margin-bottom: var(--space-lg);
+  }
+
+  .split p,
+  .center-heading p,
+  .faq-grid p,
+  .final-box p {
+    color: var(--color-text-secondary);
+    font-size: var(--fs-md);
+    line-height: var(--lh-relaxed);
+  }
+
+  .recommend-section .purple-button {
+    margin-top: var(--space-xl);
+  }
+
+  .split > img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .problem-section .split > img {
+    box-shadow: none;
+  }
+
+  .problem-list,
+  .niche-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: var(--space-xl);
+  }
+
+  .problem-list span,
+  .niche-list span {
+    position: relative;
+    overflow: hidden;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    background: var(--color-primary-surface);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary-lighter);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-sm);
+    transform: translateY(0) scale(1);
+    transition:
+      transform 260ms var(--ease-out-expo),
+      background 260ms var(--ease-out-expo),
+      color 260ms var(--ease-out-expo),
+      box-shadow 260ms var(--ease-out-expo);
+  }
+
+  .niche-list span::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.55) 45%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 520ms var(--ease-out-expo);
+  }
+
+  .niche-list span:hover {
+    transform: translateY(-4px) scale(1.04);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 14px 26px rgba(142, 36, 204, 0.22);
+  }
+
+  .niche-list span:hover::after {
+    transform: translateX(120%);
+  }
+
+  .plans-section {
+    background: var(--color-bg-warm);
+  }
+
+  .plans-section.compact {
+    padding-top: var(--space-3xl);
+  }
+
+  .center-heading {
+    max-width: 780px;
+    margin: 0 auto var(--space-3xl);
+    text-align: center;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  .plan-card {
+    position: relative;
+    text-align: center;
+    background: #fff;
+    padding: 46px 28px 34px;
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transform: translateY(0) scale(1);
+    transition:
+      transform 360ms var(--ease-out-expo),
+      box-shadow 360ms var(--ease-out-expo),
+      outline-color 360ms var(--ease-out-expo);
+  }
+
+  .plan-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(142, 36, 204, 0.12), rgba(244, 182, 63, 0.1));
+    opacity: 0;
+    transition: opacity 360ms var(--ease-out-expo);
+  }
+
+  .plan-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .plan-card:hover::before {
+    opacity: 1;
+  }
+
+  .plan-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .plan-card.featured {
+    outline: 2px solid var(--color-primary);
+  }
+
+  .discount {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 900;
+    transition:
+      transform 360ms var(--ease-out-expo),
+      background 360ms var(--ease-out-expo),
+      box-shadow 360ms var(--ease-out-expo);
+  }
+
+  .plan-card:hover .discount {
+    transform: rotate(8deg) scale(1.12);
+    background: var(--color-primary);
+    box-shadow: 0 10px 22px rgba(142, 36, 204, 0.28);
+  }
+
+  .plan-card h3 {
+    font-size: var(--fs-xl);
+    margin-bottom: var(--space-lg);
+  }
+
+  .price {
+    display: grid;
+    gap: 4px;
+    margin-bottom: var(--space-lg);
+  }
+
+  .price del {
+    color: #9b9b9b;
+    font-size: var(--fs-lg);
+  }
+
+  .price strong {
+    color: var(--color-primary);
+    font-size: var(--fs-3xl);
+    line-height: 1;
+  }
+
+  .plan-card ul {
+    display: grid;
+    gap: 12px;
+    margin: var(--space-xl) 0;
+  }
+
+  .plan-card li {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+  }
+
+  .plan-card:hover a {
+    transform: translateY(-2px);
+    background: var(--color-primary-medium);
+    box-shadow: 0 12px 24px rgba(142, 36, 204, 0.28);
+  }
+
+  .strategy-section,
+  .support-section,
+  .final-section {
+    background: var(--color-bg-dark);
+    color: #fff;
+  }
+
+  .strategy-section h2,
+  .support-section h2,
+  .final-section h2,
+  .strategy-grid h3 {
+    color: #fff;
+  }
+
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .strategy-grid article {
+    padding: var(--space-2xl);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.12);
+  }
+
+  .strategy-grid p,
+  .support-section p,
+  .support-list li,
+  .final-section p {
+    color: rgba(255,255,255,.82);
+  }
+
+  .center-cta {
+    text-align: center;
+    margin-top: var(--space-3xl);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .testimonial-carousel {
+    position: relative;
+    padding: 4px 0 10px;
+  }
+
+  .testimonial-carousel--mobile {
+    display: none;
+  }
+
+  .testimonial-window {
+    overflow: hidden;
+    padding: 0 2px 34px;
+  }
+
+  .testimonial-track {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    transition: transform 520ms var(--ease-out-expo);
+    will-change: transform;
+  }
+
+  .testimonial-slide {
+    flex: 0 0 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 260px));
+    align-items: start;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .team-grid article {
+    padding: 16px 16px 24px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    min-height: 390px;
+  }
+
+  .team-grid img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    margin: 0 auto var(--space-lg);
+    border-radius: 8px;
+    box-shadow: 0 16px 30px rgba(58, 18, 88, .14);
+  }
+
+  .testimonial-print {
+    position: relative;
+    margin: 0;
+    border-radius: 18px;
+    padding: 10px;
+    background: var(--color-bg-dark-card);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(0);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .testimonial-print:nth-child(even) {
+    margin-top: var(--space-xl);
+  }
+
+  .testimonial-print:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .testimonial-print img {
+    width: 100%;
+    aspect-ratio: 390 / 720;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #efe7dc;
+  }
+
+  .testimonial-print figcaption {
+    padding: var(--space-md) var(--space-sm) var(--space-sm);
+    text-align: center;
+  }
+
+  .testimonial-print strong {
+    color: #fff;
+  }
+
+  .testimonial-print span {
+    display: block;
+    color: var(--color-accent-light);
+    font-size: var(--fs-xs);
+    font-weight: 800;
+    margin-top: 2px;
+  }
+
+  .testimonial-print p {
+    color: rgba(255,255,255,.68);
+    font-size: var(--fs-xs);
+    line-height: 1.45;
+    margin-top: var(--space-sm);
+  }
+
+  .testimonial-controls {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px 48px;
+  }
+
+  .testimonial-arrow {
+    pointer-events: auto;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-primary-surface);
+    color: var(--color-primary);
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 900;
+    box-shadow: 0 12px 28px rgba(48, 16, 72, .16);
+    transition: transform var(--transition-base), background var(--transition-base), color var(--transition-base);
+  }
+
+  .testimonial-arrow:hover {
+    transform: translateY(-2px);
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .testimonial-dots {
+    pointer-events: auto;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .testimonial-dot {
+    width: 9px;
+    height: 9px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-primary-lighter);
+    cursor: pointer;
+    padding: 0;
+    transition: transform var(--transition-base), background var(--transition-base);
+  }
+
+  .testimonial-dot.active {
+    transform: scale(1.45);
+    background: var(--color-primary);
+  }
+
+  .team-grid p {
+    display: block;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .support-list {
+    display: grid;
+    gap: 12px;
+    margin: var(--space-xl) 0;
+  }
+
+  .support-list li::before {
+    content: "✓";
+    color: var(--color-accent-light);
+    margin-right: 10px;
+    font-weight: 900;
+  }
+
+  .stats-section {
+    padding: var(--space-3xl) 0;
+    background: var(--color-bg-dark);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .stats-grid div {
+    text-align: center;
+    padding: var(--space-xl);
+    background: var(--color-bg-dark);
+    color: #fff;
+  }
+
+  .stats-grid strong {
+    display: block;
+    color: var(--color-accent-light);
+    font-size: var(--fs-2xl);
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+  }
+
+  .stats-grid span {
+    display: block;
+    margin-top: var(--space-sm);
+    color: rgba(255, 255, 255, 0.68);
+    font-weight: var(--fw-regular);
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: var(--fs-sm);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .niches-section {
+    background: var(--color-bg-warm);
+  }
+
+  .niches-section .split > img {
+    box-shadow: none;
+  }
+
+  .niches-section .purple-button {
+    margin-top: var(--space-xl);
+  }
+
+  .final-box .purple-button {
+    border-radius: var(--radius-full);
+  }
+
+  .faq-section {
+    background: var(--color-bg-warm);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: .75fr 1fr;
+    gap: var(--space-4xl);
+    align-items: start;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .faq-list details {
+    border-radius: 8px;
+    border: 1px solid var(--color-border-light);
+    padding: var(--space-lg);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-list summary {
+    cursor: pointer;
+    color: var(--color-text);
+    font-weight: var(--fw-bold);
+  }
+
+  .faq-list p {
+    margin-top: var(--space-md);
+    color: var(--color-text-secondary);
+    line-height: var(--lh-relaxed);
+  }
+
+  .final-box {
+    text-align: center;
+    max-width: 860px;
+  }
+
+  .final-box div {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-top: var(--space-xl);
+  }
+
+  @media (max-width: 1100px) {
+    .cb-hero-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .cb-hero-copy {
+      max-width: 760px;
+    }
+
+    .hero-authority-visual {
+      justify-self: center;
+      width: min(620px, 100%);
+    }
+
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonial-slide {
+      gap: 18px;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cb-hero {
+      min-height: auto;
+      padding-top: var(--navbar-height);
+      text-align: center;
+    }
+
+    .cb-hero-inner {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: var(--space-2xl);
+      padding: var(--space-3xl) 0 var(--space-4xl);
+    }
+
+    .cb-hero p {
+      font-size: var(--fs-base);
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 34rem;
+      padding: 0 var(--space-md);
+    }
+
+    .cb-hero-actions,
+    .cb-hero-stats {
+      justify-content: center;
+    }
+
+    .cb-hero-stats {
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+    }
+
+    .cb-hero-stat-divider {
+      display: none;
+    }
+
+    .hero-authority-visual {
+      display: none;
+    }
+
+    .split,
+    .faq-grid,
+    .plans-grid,
+    .strategy-grid,
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonial-carousel {
+      padding-bottom: 22px;
+    }
+
+    .testimonial-controls {
+      padding: 0 0 54px;
+    }
+
+    .testimonial-arrow {
+      width: 34px;
+      height: 34px;
+      font-size: 24px;
+    }
+
+    .testimonial-carousel--desktop {
+      display: none;
+    }
+
+    .testimonial-carousel--mobile {
+      display: block;
+    }
+
+    .testimonial-window {
+      padding-bottom: 22px;
+    }
+
+    .testimonial-slide {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 14px;
+    }
+
+    .testimonial-print {
+      width: min(78vw, 260px);
+      border-radius: 20px;
+      padding: 8px;
+    }
+
+    .testimonial-print:nth-child(even) {
+      margin-top: 0;
+    }
+
+    .testimonial-print img {
+      border-radius: 15px;
+    }
+
+    .team-section .center-heading {
+      margin-bottom: var(--space-xl);
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .team-grid article {
+      min-height: 0;
+      padding: 10px 10px 14px;
+      border-radius: 6px;
+      box-shadow: 0 10px 26px rgba(38, 16, 61, .08);
+    }
+
+    .team-grid img {
+      aspect-ratio: 1 / 1;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 10px 20px rgba(58, 18, 88, .12);
+    }
+
+    .team-grid h3 {
+      font-size: .95rem;
+      margin-bottom: 2px;
+    }
+
+    .team-grid p {
+      font-size: .78rem;
+      line-height: 1.25;
+    }
+
+  }
+</style>

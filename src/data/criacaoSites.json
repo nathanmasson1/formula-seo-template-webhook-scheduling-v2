@@ -1,0 +1,237 @@
+{
+  "seo": {
+    "title": "Criação de Sites Profissionais",
+    "description": "Criação de sites profissionais, rápidos, responsivos e preparados para SEO, com layout sob medida para sua empresa vender mais.",
+    "image": "/images/marketing-agency-hero.jpg"
+  },
+  "hero": {
+    "label": "Criação de sites",
+    "title": "Site profissional para sua empresa",
+    "titleAccent": "e transformar visitas em clientes",
+    "subtitle": "Desenvolvemos sites institucionais, páginas de serviço e landing pages com visual moderno, carregamento rápido, boa experiência no celular e estrutura pensada para SEO desde o início.",
+    "image": "/images/marketing-agency-hero.jpg",
+    "primaryCta": {
+      "text": "Solicitar orçamento",
+      "href": "https://wa.me/5516999999999"
+    },
+    "secondaryCta": {
+      "text": "Ver diferenciais",
+      "href": "#diferenciais"
+    },
+    "stats": [
+      {
+        "number": "SEO",
+        "label": "estrutura preparada para ranquear"
+      },
+      {
+        "number": "Mobile",
+        "label": "layout responsivo em todas as telas"
+      },
+      {
+        "number": "Rápido",
+        "label": "páginas leves e fáceis de navegar"
+      }
+    ]
+  },
+  "intro": {
+    "label": "Foco em resultado",
+    "title": "Um site personalizado, bonito e planejado para gerar oportunidades",
+    "text": "Seu site precisa passar confiança logo nos primeiros segundos. Por isso, cada seção é pensada para explicar sua oferta, reduzir dúvidas e conduzir o visitante até o contato. A construção considera identidade visual, conteúdo estratégico, desempenho, SEO técnico e chamadas de ação bem posicionadas.",
+    "image": "/images/hero.jpg",
+    "cta": {
+      "text": "Falar com especialista",
+      "href": "https://wa.me/5516999999999"
+    }
+  },
+  "pricingBanner": {
+    "title": "Criação de site profissional com todas as telas desenhadas.",
+    "text": "Site totalmente personalizado conforme sua identidade visual, pensado em posicionamento no Google.",
+    "priceLabel": "Site profissional a partir de",
+    "price": "R$ 347,00",
+    "cta": {
+      "text": "Faça seu Orçamento Agora",
+      "href": "https://wa.me/5516999999999"
+    }
+  },
+  "benefits": {
+    "label": "O que entregamos",
+    "title": "4 pilares de um site profissional",
+    "subtitle": "A base do projeto combina estratégia, design e tecnologia para sua empresa ter uma presença digital mais forte.",
+    "items": [
+      {
+        "title": "SEO desde a estrutura",
+        "text": "Organização de títulos, conteúdo, velocidade, URLs e hierarquia da página para facilitar a leitura do Google."
+      },
+      {
+        "title": "Usabilidade clara",
+        "text": "Layout intuitivo, navegação simples e conteúdo organizado para o visitante encontrar o que procura sem esforço."
+      },
+      {
+        "title": "Conversão",
+        "text": "Chamadas para WhatsApp, botões estratégicos e blocos comerciais que ajudam o usuário a pedir orçamento."
+      },
+      {
+        "title": "Performance",
+        "text": "Páginas leves, imagens otimizadas e estrutura pensada para carregar bem no desktop e no celular."
+      }
+    ]
+  },
+  "services": {
+    "label": "Portfólio",
+    "title": "Vitrine de sites desenvolvidos",
+    "subtitle": "Alguns modelos de projetos para mostrar como seu site pode ficar profissional, moderno e pronto para gerar contatos.",
+    "items": [
+      {
+        "title": "TELUB",
+        "text": "Layout 100% personalizado e desenvolvido em WordPress",
+        "image": "/images/portfolio-showcase.jpg",
+        "imageSize": "400% 200%",
+        "imagePosition": "0% 0%",
+        "link": "https://www.site1.com/"
+      },
+      {
+        "title": "MODERNA ODONTOLOGIA MT",
+        "text": "Layout 100% personalizado e desenvolvido em WordPress",
+        "image": "/images/portfolio-showcase.jpg",
+        "imageSize": "400% 200%",
+        "imagePosition": "33.333% 0%",
+        "link": "#"
+      },
+      {
+        "title": "BASTOS GLOBAL",
+        "text": "Layout 100% personalizado e desenvolvido em WordPress",
+        "image": "/images/portfolio-showcase.jpg",
+        "imageSize": "400% 200%",
+        "imagePosition": "66.666% 0%",
+        "link": "#"
+      },
+      {
+        "title": "DENTISTA PORTO ALEGRE",
+        "text": "Layout 100% personalizado e desenvolvido em WordPress",
+        "image": "/images/portfolio-showcase.jpg",
+        "imageSize": "400% 200%",
+        "imagePosition": "100% 0%",
+        "link": "#"
+      },
+      {
+        "title": "BRASIL ENCANADORES",
+        "text": "Layout 100% personalizado e desenvolvido em WordPress",
+        "image": "/images/portfolio-showcase.jpg",
+        "imageSize": "400% 200%",
+        "imagePosition": "0% 100%",
+        "link": "#"
+      },
+      {
+        "title": "IMOBILIÁRIA MAPA",
+        "text": "Layout 100% personalizado e desenvolvido em WordPress",
+        "image": "/images/portfolio-showcase.jpg",
+        "imageSize": "400% 200%",
+        "imagePosition": "33.333% 100%",
+        "link": "#"
+      },
+      {
+        "title": "WALTER FUNDIÇÃO",
+        "text": "Layout 100% personalizado e desenvolvido em WordPress",
+        "image": "/images/portfolio-showcase.jpg",
+        "imageSize": "400% 200%",
+        "imagePosition": "66.666% 100%",
+        "link": "#"
+      },
+      {
+        "title": "NOSTRA CASA",
+        "text": "Layout 100% personalizado e desenvolvido em WordPress",
+        "image": "/images/portfolio-showcase.jpg",
+        "imageSize": "400% 200%",
+        "imagePosition": "100% 100%",
+        "link": "#"
+      }
+    ]
+  },
+  "package": {
+    "label": "Incluso no projeto",
+    "title": "Tudo o que o site precisa para sair pronto para divulgar",
+    "text": "Além do layout, cuidamos da organização das seções, adaptação para celular, botões de contato, configuração básica de SEO e ajustes visuais para manter a experiência profissional.",
+    "image": "/images/backlinks-proof.svg",
+    "bullets": [
+      "Layout responsivo para desktop e mobile",
+      "Botões de WhatsApp e chamadas de ação",
+      "Estrutura de SEO on-page",
+      "Páginas rápidas e imagens otimizadas",
+      "Conteúdo organizado para explicar sua oferta"
+    ]
+  },
+  "process": {
+    "label": "Como funciona",
+    "title": "Processo simples, com cada etapa bem definida",
+    "items": [
+      {
+        "step": "01",
+        "title": "Briefing",
+        "text": "Entendemos seu negócio, público, objetivos, serviços principais e referências visuais."
+      },
+      {
+        "step": "02",
+        "title": "Estrutura",
+        "text": "Planejamos as seções da página, chamadas, argumentos comerciais e pontos de SEO."
+      },
+      {
+        "step": "03",
+        "title": "Design e conteúdo",
+        "text": "Montamos um layout alinhado à sua marca, com textos claros e visual profissional."
+      },
+      {
+        "step": "04",
+        "title": "Publicação",
+        "text": "Finalizamos ajustes, revisamos a experiência no celular e deixamos o site pronto para divulgação."
+      }
+    ]
+  },
+  "presence": {
+    "label": "Clientes em mais de 20 estados",
+    "title": "Estamos presentes em mais de 20 estados brasileiros",
+    "subtitle": "Tenha um site profissional, saia na frente da concorrência e conquiste mais clientes.",
+    "heading": "Nossos clientes com sites profissionais estão em mais de 50 cidades",
+    "highlight": "50 cidades",
+    "text": "Com mais de 15 anos de experiência, somos especialistas em criação de sites profissionais para grandes empresas e já atendemos clientes em diversas cidades e estados do Brasil. O nosso diferencial é desenvolver sites que se posicionam melhor no Google, garantindo visibilidade e aumentando o tráfego orgânico.\n\nA nossa jornada nos permitiu expandir horizontes e chegar a lugares antes inimagináveis, tornando-nos uma referência para empresas que precisam de presença digital forte, confiável e pronta para gerar resultados.",
+    "image": "/images/criacao-sites-presence-map-only-purple.webp",
+    "cta": {
+      "text": "Faça seu Orçamento Agora",
+      "href": "https://wa.me/5516999999999"
+    }
+  },
+  "faq": {
+    "label": "Dúvidas frequentes",
+    "title": "Perguntas sobre criação de sites",
+    "subtitle": "Respostas rápidas para quem quer tirar o projeto do papel com segurança.",
+    "items": [
+      {
+        "q": "O site é feito com foco em SEO?",
+        "a": "Sim. A estrutura da página já considera títulos, organização de conteúdo, velocidade, responsividade e boas práticas de SEO on-page."
+      },
+      {
+        "q": "Consigo editar os textos e imagens depois?",
+        "a": "Sim. Esta página possui painel administrativo próprio para editar textos, chamadas, listas, FAQs e imagens principais."
+      },
+      {
+        "q": "O site funciona bem no celular?",
+        "a": "Sim. O layout é responsivo e foi pensado para leitura, navegação e contato pelo WhatsApp em telas menores."
+      },
+      {
+        "q": "Posso usar a página para campanhas de tráfego pago?",
+        "a": "Sim. A estrutura também funciona para campanhas, porque apresenta a oferta com clareza e mantém chamadas de conversão ao longo da página."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Vamos criar um site mais profissional para sua empresa?",
+    "text": "Conte sobre seu projeto e receba uma orientação inicial para transformar sua presença digital em uma página clara, rápida e pronta para gerar contatos.",
+    "primaryCta": {
+      "text": "Pedir orçamento no WhatsApp",
+      "href": "https://wa.me/5516999999999"
+    },
+    "secondaryCta": {
+      "text": "Ir para contato",
+      "href": "/contato"
+    }
+  }
+}

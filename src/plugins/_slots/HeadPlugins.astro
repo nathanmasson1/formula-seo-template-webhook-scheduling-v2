@@ -1,0 +1,17 @@
+---
+import GoogleTag from '../google-tag/GoogleTag.astro';
+import MetaPixel from '../meta-pixel/MetaPixel.astro';
+import AdSenseHead from '../adsense/AdSenseHead.astro';
+import { readData } from '../../lib/readData';
+
+const pluginsConfig = readData('pluginsConfig.json', {}) as any;
+const rawVerificationTag = String(pluginsConfig?.searchConsole?.verificationTag || '').trim();
+const contentMatch = rawVerificationTag.match(/content=["']([^"']+)["']/i);
+const verificationContent = contentMatch
+  ? contentMatch[1]
+  : rawVerificationTag.replace(/^google-site-verification=/i, '').trim();
+---
+{verificationContent && <meta name="google-site-verification" content={verificationContent} />}
+<GoogleTag />
+<MetaPixel />
+<AdSenseHead />

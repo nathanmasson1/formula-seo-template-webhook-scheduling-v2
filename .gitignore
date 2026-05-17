@@ -1,0 +1,31 @@
+# build output
+dist/
+
+# dependencies
+node_modules/
+
+# astro
+.astro/
+
+# environment variables
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+.vercel
+
+# local dev logs
+dev-server.*.log
+dev-server-*.log
+astro-dev.*.log
+.codex-dev.*.log
+
+# temporary image outputs
+*.tmp.webp

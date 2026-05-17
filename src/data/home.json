@@ -1,0 +1,169 @@
+{
+  "hero": {
+    "badge": "Marketing Digital & SEO",
+    "title": "Cresça no Google com estratégia, conteúdo e autoridade",
+    "subtitle": "Planejamos SEO, backlinks, conteúdo e otimização para marcas que precisam transformar tráfego orgânico em oportunidades reais de venda.",
+    "ctaPrimary": {
+      "text": "Criação de Sites",
+      "href": "/criacao-de-sites"
+    },
+    "ctaSecondary": {
+      "text": "Falar com especialista",
+      "href": "/contato"
+    },
+    "image": "/images/marketing-agency-hero.jpg",
+    "stats": [
+      {
+        "number": "120+",
+        "label": "Sites desenvolvidos"
+      },
+      {
+        "number": "500+",
+        "label": "Clientes atendidos"
+      },
+      {
+        "number": "300%",
+        "label": "Crescimento no Google"
+      }
+    ],
+    "cards": [
+      {
+        "icon": "01",
+        "title": "SEO técnico",
+        "text": "Base pronta para ranquear"
+      },
+      {
+        "icon": "02",
+        "title": "Backlinks",
+        "text": "Autoridade com contexto"
+      },
+      {
+        "icon": "03",
+        "title": "Conteúdo",
+        "text": "Busca virando conversão"
+      }
+    ]
+  },
+  "socialProof": {
+    "brandLabel": "Serviços integrados para crescimento orgânico",
+    "stats": [
+      {
+        "number": "SEO",
+        "suffix": "",
+        "label": "Estratégia orgânica",
+        "detail": "Arquitetura, conteúdo e autoridade"
+      },
+      {
+        "number": "120",
+        "suffix": "+",
+        "label": "Portais e blogs",
+        "detail": "Para publicações de backlinks"
+      },
+      {
+        "number": "3",
+        "suffix": "d",
+        "label": "Prazo médio",
+        "detail": "Operação simples e acompanhada"
+      },
+      {
+        "number": "1",
+        "suffix": " ano",
+        "label": "Garantia",
+        "detail": "Suporte ao cliente"
+      }
+    ],
+    "brands": [
+      {
+        "title": "SEO Técnico",
+        "description": "Ajustamos estrutura, velocidade, indexação e arquitetura para o site ficar mais claro para o Google."
+      },
+      {
+        "title": "Backlinks",
+        "description": "Construímos autoridade com links contextuais em sites reais, alinhados ao nicho e à página que precisa crescer."
+      },
+      {
+        "title": "Conteúdo",
+        "description": "Planejamos pautas, páginas e artigos com foco em intenção de busca, clareza comercial e oportunidade orgânica."
+      },
+      {
+        "title": "Guest Posts",
+        "description": "Criamos publicações editoriais em portais e blogs parceiros para reforçar relevância, contexto e autoridade."
+      },
+      {
+        "title": "Consultoria",
+        "description": "Priorizamos diagnósticos, próximas ações e decisões de SEO para você saber onde investir primeiro."
+      },
+      {
+        "title": "Conversão",
+        "description": "Melhoramos CTAs, argumentos e jornadas para transformar tráfego orgânico em contatos, propostas e vendas."
+      }
+    ]
+  },
+  "linkBuilding": {
+    "label": "Autoridade que sustenta o crescimento",
+    "title": "Link building transforma conteúdo em presença real no Google",
+    "titleAccent": "presença real",
+    "text": "Conteúdo bem planejado precisa de sinais de confiança para competir. Uma estratégia de link building conecta páginas importantes a publicações relevantes, fortalece autoridade e ajuda o Google a reconhecer que seu site merece posições melhores.",
+    "bullets": [
+      "Fortalece páginas estratégicas para disputar termos mais concorridos.",
+      "Cria autoridade contextual com links em sites alinhados ao seu nicho.",
+      "Complementa SEO técnico e conteúdo para formar uma estratégia orgânica completa."
+    ],
+    "ctaText": "Conhecer estratégia de backlinks",
+    "ctaHref": "/backlinks",
+    "metrics": [
+      {
+        "number": "01",
+        "label": "Conteúdo otimizado"
+      },
+      {
+        "number": "02",
+        "label": "Autoridade contextual"
+      },
+      {
+        "number": "03",
+        "label": "Ranking mais forte"
+      }
+    ]
+  },
+  "postsGrid": {
+    "label": "Inteligência de marketing",
+    "title": "Conteúdos para ranquear melhor",
+    "subtitle": "Guias, análises e estratégias para quem quer crescer com SEO, conteúdo e presença digital.",
+    "limit": 6,
+    "ctaText": "Ver todos os insights",
+    "ctaHref": "/blog"
+  },
+  "about": {
+    "label": "Como trabalhamos",
+    "title": "Marketing digital com",
+    "titleAccent": "processo e clareza",
+    "text1": "Unimos pesquisa, conteúdo, SEO técnico e autoridade para construir presença orgânica de forma consistente. Cada ação tem objetivo, contexto e acompanhamento.",
+    "text2": "Nossa abordagem prioriza qualidade, relevância e comunicação direta para que você saiba o que está sendo feito e por que aquilo importa para o crescimento do site.",
+    "ctaPrimary": {
+      "text": "Conheça a agência",
+      "href": "/sobre"
+    },
+    "ctaSecondary": {
+      "text": "Solicitar proposta",
+      "href": "/contato"
+    },
+    "features": [
+      {
+        "number": "01",
+        "title": "Diagnóstico SEO",
+        "description": "Mapeamos concorrência, páginas prioritárias e oportunidades para orientar cada etapa."
+      },
+      {
+        "number": "02",
+        "title": "Autoridade real",
+        "description": "Construímos backlinks e publicações contextuais em sites alinhados ao seu mercado."
+      },
+      {
+        "number": "03",
+        "title": "Conteúdo que vende",
+        "description": "Transformamos intenção de busca em páginas, artigos e argumentos preparados para converter."
+      }
+    ]
+  }
+}

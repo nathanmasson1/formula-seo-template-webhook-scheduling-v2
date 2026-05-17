@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Dicas",
+    "slug": "dicas",
+    "description": "Guias práticos e dicas úteis"
+  },
+  {
+    "name": "Comparativos",
+    "slug": "comparativos",
+    "description": "Comparação entre dois ou mais produtos"
+  }
+]

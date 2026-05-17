@@ -1,0 +1,369 @@
+{
+  "seo": {
+    "title": "Comprar Backlinks",
+    "description": "Backlinks orgânicos de sites reais e confiáveis para melhorar autoridade, tráfego e posicionamento no Google.",
+    "image": "/images/og-default.jpg"
+  },
+  "hero": {
+    "eyebrow": "",
+    "title": "Comprar Backlinks",
+    "subtitle": "Quer melhorar sua posição no Google? Somos especialistas em backlinks orgânicos de sites reais e confiáveis. Atraia mais tráfego, fortaleça sua autoridade e impulsione seu site.",
+    "primaryCta": {
+      "text": "Entre em contato",
+      "href": "https://wa.me/5522992815124"
+    },
+    "secondaryCta": {
+      "text": "Ver planos",
+      "href": "#planos"
+    },
+    "visual": {
+      "label": "Operação de autoridade",
+      "title": "Autoridade",
+      "text": "Links reais apontando para páginas estratégicas",
+      "items": [
+        {
+          "number": "01",
+          "label": "Conteúdo publicado"
+        },
+        {
+          "number": "02",
+          "label": "Contexto do nicho"
+        },
+        {
+          "number": "03",
+          "label": "Mais força no Google"
+        }
+      ]
+    },
+    "stats": [
+      {
+        "number": "5000+",
+        "label": "Guest posts publicados"
+      },
+      {
+        "number": "120+",
+        "label": "Portais e blogs disponíveis"
+      },
+      {
+        "number": "500+",
+        "label": "Clientes atendidos"
+      }
+    ]
+  },
+  "problem": {
+    "label": "",
+    "title": "Seu site ainda não tem a autoridade que precisa?",
+    "text": "Você já otimizou seu site e escreveu conteúdos de qualidade, mas ainda não aparece bem nas buscas? Isso costuma acontecer quando não há links fortes apontando para suas páginas. Backlinks de qualidade ajudam a transformar invisibilidade em destaque.",
+    "image": "/images/backlinks-problem-image-1778626996910-autoridade.png",
+    "points": [
+      "Links inseridos em conteúdo editorial",
+      "Sites reais e alinhados ao seu nicho",
+      "Âncoras naturais para reforçar relevância",
+      "Publicação manual e acompanhamento humano"
+    ]
+  },
+  "plans": {
+    "label": "",
+    "title": "Planos & Preços",
+    "subtitle": "Escolha o pack ideal para começar a construir autoridade com links dofollow, artigo único e prazo médio de 10 dias.",
+    "items": [
+      {
+        "name": "Pack 4 Backlinks",
+        "oldPrice": "R$ 200",
+        "price": "R$ 160",
+        "discount": "20%",
+        "featured": false,
+        "features": [
+          "DA 20 à 40",
+          "Prazo 10 dias",
+          "Backlink dofollow",
+          "Artigo único"
+        ],
+        "ctaText": "Compre Agora",
+        "ctaHref": "https://wa.me/5522992815124"
+      },
+      {
+        "name": "Pack 12 Backlinks",
+        "oldPrice": "R$ 530",
+        "price": "R$ 397",
+        "discount": "25%",
+        "featured": true,
+        "features": [
+          "DA 20 à 40",
+          "Prazo 10 dias",
+          "Backlink dofollow",
+          "Artigo único"
+        ],
+        "ctaText": "Compre Agora",
+        "ctaHref": "https://wa.me/5522992815124"
+      },
+      {
+        "name": "Pack 25 Backlinks",
+        "oldPrice": "R$ 997",
+        "price": "R$ 797",
+        "discount": "20%",
+        "featured": false,
+        "features": [
+          "DA 20 à 40",
+          "Prazo 10 dias",
+          "Backlink dofollow",
+          "Artigo único"
+        ],
+        "ctaText": "Compre Agora",
+        "ctaHref": "https://wa.me/5522992815124"
+      },
+      {
+        "name": "Pack 60 Backlinks",
+        "oldPrice": "R$ 2.400",
+        "price": "R$ 1.920",
+        "discount": "20%",
+        "featured": false,
+        "features": [
+          "DA 20 à 40",
+          "Prazo 10 dias",
+          "Backlink dofollow",
+          "Artigo único"
+        ],
+        "ctaText": "Compre Agora",
+        "ctaHref": "https://wa.me/5522992815124"
+      }
+    ]
+  },
+  "differentials": {
+    "label": "Nosso diferencial",
+    "title": "Por que nossa estratégia funciona",
+    "ctaText": "Entre em contato",
+    "ctaHref": "https://wa.me/5522992815124",
+    "items": [
+      {
+        "title": "Rede própria e controle total",
+        "text": "Trabalhamos com uma rede curada de blogs e portais para controlar contexto, autoridade, âncoras e permanência."
+      },
+      {
+        "title": "Backlinks nichados",
+        "text": "Os links são inseridos em páginas relacionadas ao seu mercado para aumentar relevância temática e confiança."
+      },
+      {
+        "title": "Garantia e transparência",
+        "text": "Caso um guest post seja removido dentro da garantia, buscamos uma reposição com métricas similares."
+      }
+    ]
+  },
+  "recommendation": {
+    "label": "Prova social",
+    "title": "Somos recomendados pelo Canal Escola de SEO",
+    "text": "Você investe com segurança em backlinks de qualidade, seguindo uma estratégia usada por profissionais, consultores e agências que sabem a importância de autoridade off-page.",
+    "image": "/images/backlinks-recommendation-image-1778795366863-formula-seo-indicacao-escola-seo.jpg",
+    "ctaText": "Veja o Vídeo",
+    "ctaHref": "https://www.youtube.com/watch?v=9PGBExWHGb0"
+  },
+  "testimonials": {
+    "label": "Depoimentos",
+    "title": "Clientes satisfeitos",
+    "subtitle": "Projetos que investem em backlinks contextuais conseguem melhorar presença orgânica, tráfego e autoridade ao longo do tempo.",
+    "items": [
+      {
+        "name": "Clube do ônibus",
+        "role": "E-commerce",
+        "avatar": "/images/backlinks-avatar-1.svg",
+        "text": "Os links foram publicados dentro do prazo e ajudaram a fortalecer páginas estratégicas do nosso site.",
+        "image": "/images/whatsapp-proof-1.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 1"
+      },
+      {
+        "name": "Rafael Costa",
+        "role": "Consultoria",
+        "avatar": "/images/backlinks-avatar-2.svg",
+        "text": "Gostei da clareza no atendimento e da orientação sobre pacotes, âncoras e ritmo de publicação.",
+        "image": "/images/whatsapp-proof-2.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 2"
+      },
+      {
+        "name": "Camila Rocha",
+        "role": "Marketing",
+        "avatar": "/images/backlinks-avatar-3.svg",
+        "text": "A estratégia trouxe mais segurança para trabalhar autoridade sem depender de links aleatórios.",
+        "image": "/images/whatsapp-proof-3.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 3"
+      },
+      {
+        "name": "Lucas Ferreira",
+        "role": "SEO local",
+        "avatar": "/images/backlinks-avatar-4.svg",
+        "text": "Atendimento claro antes da compra e publicação dos backlinks dentro do prazo combinado.",
+        "image": "/images/whatsapp-proof-4.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 4"
+      },
+      {
+        "name": "Marina Alves",
+        "role": "Serviços locais",
+        "avatar": "/images/backlinks-avatar-1.svg",
+        "text": "Recebi orientação sobre quais páginas priorizar e o processo ficou bem simples de acompanhar.",
+        "image": "/images/clube.JPG",
+        "alt": "Print de WhatsApp com depoimento de cliente 5"
+      },
+      {
+        "name": "Pedro Martins",
+        "role": "Afiliados",
+        "avatar": "/images/backlinks-avatar-2.svg",
+        "text": "Os backlinks foram publicados com âncoras naturais e dentro do combinado.",
+        "image": "/images/whatsapp-proof-1.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 6"
+      },
+      {
+        "name": "Ana Ribeiro",
+        "role": "Conteúdo",
+        "avatar": "/images/backlinks-avatar-3.svg",
+        "text": "A equipe explicou o ritmo ideal de publicação e ajudou a organizar melhor a estratégia.",
+        "image": "/images/whatsapp-proof-2.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 7"
+      },
+      {
+        "name": "Bruno Teixeira",
+        "role": "E-commerce",
+        "avatar": "/images/backlinks-avatar-4.svg",
+        "text": "Gostei da transparência sobre os sites e do suporte antes de fechar o pacote.",
+        "image": "/images/whatsapp-proof-3.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 8"
+      },
+      {
+        "name": "Juliana Campos",
+        "role": "SEO",
+        "avatar": "/images/backlinks-avatar-1.svg",
+        "text": "O atendimento foi rápido e as publicações chegaram com os detalhes combinados.",
+        "image": "/images/whatsapp-proof-4.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 9"
+      },
+      {
+        "name": "Felipe Nogueira",
+        "role": "Blog de nicho",
+        "avatar": "/images/backlinks-avatar-2.svg",
+        "text": "Consegui montar uma base de autoridade melhor sem precisar procurar sites manualmente.",
+        "image": "/images/clube.JPG",
+        "alt": "Print de WhatsApp com depoimento de cliente 10"
+      },
+      {
+        "name": "Patrícia Lima",
+        "role": "Agência",
+        "avatar": "/images/backlinks-avatar-3.svg",
+        "text": "O suporte ajudou a escolher pacotes para clientes diferentes e poupou bastante tempo.",
+        "image": "/images/whatsapp-proof-1.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 11"
+      },
+      {
+        "name": "Ricardo Mendes",
+        "role": "Negócio local",
+        "avatar": "/images/backlinks-avatar-4.svg",
+        "text": "Foi fácil entender as opções e acompanhar a publicação dos links.",
+        "image": "/images/whatsapp-proof-2.svg",
+        "alt": "Print de WhatsApp com depoimento de cliente 12"
+      }
+    ]
+  },
+  "support": {
+    "label": "Suporte no WhatsApp",
+    "title": "Fale diretamente com nossa equipe",
+    "text": "Tire suas dúvidas, receba orientação sobre o melhor pack para seu projeto e agilize o processo com atendimento rápido, humano e direto.",
+    "image": "/images/backlinks-support-image-1778719198004-photo-2026-05-13-20-24-37.jpg",
+    "bullets": [
+      "Atendimento WhatsApp de segunda a sexta, das 9h às 18h",
+      "Orientação sobre pacotes, nichos e âncoras",
+      "Processo simples, com acompanhamento humano"
+    ],
+    "ctaText": "Entre em contato",
+    "ctaHref": "https://wa.me/5522992815124"
+  },
+  "team": {
+    "label": "Nosso time",
+    "title": "O time perfeito",
+    "items": [
+      {
+        "name": "Nathan",
+        "role": "Desenvolvedor Web",
+        "image": "/images/backlinks-team-items-0-image-1778795858311-nathan-masson.jpg"
+      },
+      {
+        "name": "Silvio",
+        "role": "Especialista em SEO",
+        "image": "https://comprar-backlinks.com/wp-content/uploads/2025/09/Silvio-Girotto.jpg"
+      },
+      {
+        "name": "Ygor",
+        "role": "Link Building",
+        "image": "https://comprar-backlinks.com/wp-content/uploads/2022/05/9.jpg"
+      },
+      {
+        "name": "Cris",
+        "role": "SEO e Conteúdo",
+        "image": "/images/backlinks-team-items-3-image-1778777763475-cris-gripp-formula-seo.jpg"
+      }
+    ]
+  },
+  "niches": {
+    "label": "",
+    "title": "Backlinks nichados",
+    "subtitle": "Links em sites do mesmo tema aumentam relevância, autoridade e credibilidade. Seu site ganha tráfego qualificado e presença digital mais sólida.",
+    "image": "/images/backlinks-niches-image-1778627167441-nichos.png",
+    "ctaText": "Saiba mais",
+    "ctaHref": "https://wa.me/5522992815124",
+    "items": [
+      "Tecnologia",
+      "Receitas",
+      "Notícia",
+      "Educação",
+      "Turismo",
+      "Automotivo",
+      "Marketing",
+      "Finanças",
+      "Pet",
+      "Filme",
+      "Direito",
+      "Energia Solar",
+      "Jardinagem / Meio Ambiente",
+      "Moda / Beleza",
+      "Saúde",
+      "Negócio / Vendas",
+      "Arquitetura",
+      "Religião"
+    ]
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Perguntas Frequentes",
+    "subtitle": "Dúvidas? Veja como backlinks podem impulsionar autoridade, visibilidade e posicionamento orgânico.",
+    "items": [
+      {
+        "q": "Vale a pena investir em backlinks?",
+        "a": "Backlinks podem ajudar quando fazem parte de uma estratégia natural, contextual e relevante. O ideal é combinar links de qualidade com bom conteúdo e SEO técnico."
+      },
+      {
+        "q": "Backlinks baratos são prejudiciais?",
+        "a": "Links baratos e automatizados podem gerar risco. O foco deve estar em sites reais, conteúdo contextual e relevância para o nicho."
+      },
+      {
+        "q": "Onde adquirir backlinks de qualidade?",
+        "a": "Agências especializadas conseguem selecionar blogs, portais e publicações alinhadas ao seu mercado, orçamento e objetivo de ranqueamento."
+      },
+      {
+        "q": "O que é um Guest Post e como funciona?",
+        "a": "Guest post é um artigo publicado em outro site com um link apontando para sua página. Ele ajuda em autoridade e também pode gerar tráfego direto."
+      },
+      {
+        "q": "Quanto tempo leva para alcançar melhores posições?",
+        "a": "O prazo depende da concorrência, autoridade atual e qualidade do conteúdo. SEO é acumulativo e precisa de consistência."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Pronto para impulsionar seu site?",
+    "text": "Fale conosco e escolha o pack de backlinks ideal para sua estratégia de crescimento orgânico.",
+    "primaryCta": {
+      "text": "Falar no WhatsApp",
+      "href": "https://wa.me/5522992815124"
+    },
+    "secondaryCta": {
+      "text": "Ver planos",
+      "href": "#planos"
+    }
+  }
+}

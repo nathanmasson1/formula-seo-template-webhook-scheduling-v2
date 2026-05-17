@@ -1,0 +1,63 @@
+{
+  "seo": {
+    "title": "Contato",
+    "description": "Fale com a Formula SEO para solicitar uma proposta de SEO, backlinks, guest posts ou conteúdo estratégico.",
+    "image": ""
+  },
+  "hero": {
+    "label": "Contato",
+    "title": "Vamos planejar seu",
+    "titleAccent": "crescimento orgânico",
+    "subtitle": "Conte sobre seu site, nicho e objetivo. Nossa equipe retorna com uma orientação clara sobre o melhor caminho para ganhar autoridade e tráfego."
+  },
+  "methods": [
+    {
+      "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z\"/></svg>",
+      "title": "WhatsApp",
+      "detail": "(22) 99281-5124",
+      "description": "Atendimento rápido para dúvidas, pacotes e propostas."
+    },
+    {
+      "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"/><polyline points=\"22,6 12,13 2,6\"/></svg>",
+      "title": "E-mail",
+      "detail": "contato@formulaseo.com.br",
+      "description": "Envie detalhes do projeto e retornaremos com próximos passos."
+    },
+    {
+      "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 3v18h18\"/><path d=\"m19 9-5 5-4-4-3 3\"/></svg>",
+      "title": "Consultoria",
+      "detail": "SEO e autoridade",
+      "description": "Avaliação inicial para entender prioridade e potencial."
+    }
+  ],
+  "form": {
+    "title": "Solicite uma proposta",
+    "subtitle": "Preencha os dados e conte qual resultado você busca. Quanto mais contexto, melhor a recomendação.",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Seu nome",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "seu@email.com",
+    "subjectLabel": "Objetivo",
+    "subjectPlaceholder": "Selecione uma necessidade",
+    "subjects": [
+      { "value": "backlinks", "label": "Comprar backlinks / guest posts" },
+      { "value": "seo", "label": "Consultoria de SEO" },
+      { "value": "conteudo", "label": "Conteúdo estratégico" },
+      { "value": "parceria", "label": "Parceria ou agência" },
+      { "value": "outro", "label": "Outro" }
+    ],
+    "messageLabel": "Mensagem",
+    "messagePlaceholder": "Informe o site, nicho, objetivo e prazo desejado...",
+    "submitText": "Enviar solicitação",
+    "successText": "Solicitação enviada!"
+  },
+  "faq": {
+    "title": "Dúvidas antes de falar com a gente",
+    "items": [
+      { "q": "Preciso saber qual pacote comprar?", "a": "Não. Você pode enviar seu site e objetivo, e ajudamos a indicar um caminho coerente com seu momento." },
+      { "q": "Vocês atendem qualquer nicho?", "a": "Atendemos diversos segmentos, mas avaliamos relevância, disponibilidade e adequação antes de recomendar publicações." },
+      { "q": "Quanto tempo demora para publicar backlinks?", "a": "O prazo médio inicial costuma ser de cerca de 10 dias, podendo variar conforme pacote, nicho e produção do conteúdo." },
+      { "q": "O formulário já envia e-mail?", "a": "No ambiente atual ele exibe confirmação visual. Para produção, é possível integrar com e-mail, CRM ou WhatsApp." }
+    ]
+  }
+}

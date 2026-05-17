@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { readData } from '../lib/readData';
+import { socialLinkAttrs } from '../lib/socialLinks';
+
+const sobre = readData('sobre.json') || {};
+const seo = sobre.seo || {};
+const hero = sobre.hero || {};
+const story = sobre.story || {};
+const values = sobre.values || {};
+const timelineSec = sobre.timeline || {};
+const cta = sobre.cta || {};
+
+const valueItems = values.items || [];
+const timeline = timelineSec.items || [];
+const storyParagraphs = story.paragraphs || [];
+const storyStats = story.stats || [];
+---
+
+<BaseLayout
+  title={seo.title || 'Sobre'}
+  description={seo.description || 'Conheça nossa agência de marketing digital e SEO.'}
+  image={seo.image || undefined}
+>
+  <section class="about-hero">
+    <div class="container about-hero-inner">
+      <div>
+        <span class="section-label">{hero.label || 'Sobre a agência'}</span>
+        <h1>
+          {hero.title || 'Criamos crescimento orgânico com'}
+          <span>{hero.titleAccent || 'estratégia e execução'}</span>
+        </h1>
+      </div>
+      <p>{hero.subtitle}</p>
+    </div>
+  </section>
+
+  <section class="story-section section">
+    <div class="container story-grid">
+      <div class="story-copy">
+        <span class="section-label">{story.label || 'Nossa abordagem'}</span>
+        <h2>{story.title} <span>{story.titleAccent}</span></h2>
+        {storyParagraphs.map((p: string) => (
+          <p set:html={p}></p>
+        ))}
+      </div>
+      <div class="story-stats">
+        {storyStats.map((stat: any) => (
+          <div>
+            <strong>{stat.number}</strong>
+            <span>{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="values-section section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">{values.label || 'Princípios'}</span>
+        <h2 class="section-title">{values.title || 'O que guia cada projeto'}</h2>
+        <p class="section-subtitle">{values.subtitle}</p>
+      </div>
+      <div class="values-grid">
+        {valueItems.map((value: any) => (
+          <article>
+            <span>{value.number}</span>
+            <h3>{value.title}</h3>
+            <p>{value.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section section">
+    <div class="container process-grid">
+      <div>
+        <span class="section-label">{timelineSec.label || 'Processo'}</span>
+        <h2>{timelineSec.title || 'Como conduzimos uma estratégia'}</h2>
+      </div>
+      <div class="process-list">
+        {timeline.map((item: any) => (
+          <article>
+            <span>{item.year}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="about-cta section">
+    <div class="container about-cta-inner">
+      <h2>
+        {cta.title || 'Quer transformar SEO em'}
+        <span>{cta.titleAccent || 'canal de aquisição?'}</span>
+      </h2>
+      <p>{cta.text}</p>
+      <div class="about-actions">
+        <a href={cta.ctaPrimary?.href || '/contato'} class="btn btn-primary" {...socialLinkAttrs(cta.ctaPrimary?.href, cta.ctaPrimary?.text || 'Falar com especialista')}>{cta.ctaPrimary?.text || 'Falar com especialista'}</a>
+        <a href={cta.ctaSecondary?.href || '/backlinks'} class="btn btn-outline" {...socialLinkAttrs(cta.ctaSecondary?.href, cta.ctaSecondary?.text || 'Ver backlinks')}>{cta.ctaSecondary?.text || 'Ver backlinks'}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-4xl);
+    background:
+      linear-gradient(135deg, rgba(52, 8, 88, 0.94), rgba(142, 36, 204, 0.82)),
+      linear-gradient(90deg, rgba(20, 8, 36, 0.88), rgba(115, 63, 208, 0.52)),
+      url('/images/marketing-agency-hero.jpg') center/cover;
+  }
+
+  .about-hero-inner,
+  .story-grid,
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.78fr;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .about-hero .section-label {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: var(--color-accent-light);
+  }
+
+  .about-hero h1,
+  .about-hero h1 span {
+    color: #fff;
+  }
+
+  .about-hero h1 {
+    font-size: var(--fs-hero);
+    letter-spacing: 0;
+    line-height: 1.04;
+  }
+
+  .about-hero h1 span,
+  .story-copy h2 span,
+  .about-cta h2 span {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: var(--fw-regular);
+    color: var(--color-accent-light);
+  }
+
+  .about-hero p {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: var(--fs-lg);
+    line-height: var(--lh-relaxed);
+  }
+
+  .story-section,
+  .process-section {
+    background: var(--color-bg);
+  }
+
+  .story-copy h2,
+  .process-grid h2,
+  .about-cta h2 {
+    font-size: var(--fs-4xl);
+    letter-spacing: 0;
+    margin-bottom: var(--space-xl);
+  }
+
+  .story-copy h2 span,
+  .about-cta h2 span {
+    color: var(--color-primary);
+  }
+
+  .story-copy p,
+  .process-list p,
+  .values-grid p,
+  .about-cta p {
+    color: var(--color-text-muted);
+    line-height: var(--lh-relaxed);
+  }
+
+  .story-copy p + p {
+    margin-top: var(--space-lg);
+  }
+
+  .story-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .story-stats div,
+  .values-grid article,
+  .process-list article {
+    background: var(--color-bg-pure);
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    padding: var(--space-xl);
+  }
+
+  .story-stats strong {
+    display: block;
+    color: var(--color-primary);
+    font-size: var(--fs-2xl);
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+  }
+
+  .story-stats span {
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+  }
+
+  .values-section,
+  .about-cta {
+    background: var(--color-bg-warm);
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .values-grid article > span {
+    color: var(--color-accent-dark);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-widest);
+  }
+
+  .values-grid h3 {
+    font-size: var(--fs-lg);
+    margin: var(--space-lg) 0 var(--space-sm);
+    letter-spacing: 0;
+  }
+
+  .process-list {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .process-list article {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .process-list article > span {
+    display: inline-grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: var(--fw-bold);
+  }
+
+  .process-list h3 {
+    font-size: var(--fs-lg);
+    letter-spacing: 0;
+    margin-bottom: var(--space-xs);
+  }
+
+  .about-cta-inner {
+    max-width: 740px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 1024px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-hero-inner,
+    .story-grid,
+    .process-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .story-stats,
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

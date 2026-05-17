@@ -1,0 +1,9 @@
+---
+export const prerender = false;
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import CriacaoSitesEditor from '../../components/admin/CriacaoSitesEditor';
+---
+
+<AdminLayout title="Criação de Sites" activeSection="criacao-de-sites">
+    <CriacaoSitesEditor client:load />
+</AdminLayout>

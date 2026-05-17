@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { readData } from '../lib/readData';
+
+const terms = readData('terms.json') || {};
+const title = terms.title || 'Termos de Uso';
+const sections = Array.isArray(terms.content) ? terms.content : [];
+---
+
+<BaseLayout
+  title={title}
+  description="Termos de uso do site."
+>
+  <section class="legal-page">
+    <div class="container legal-inner">
+      <header class="legal-header">
+        <span>Ultima atualizacao: {terms.lastUpdated || 'Nao informada'}</span>
+        <h1>{title}</h1>
+      </header>
+
+      <div class="legal-content">
+        {sections.map((section: any) => (
+          <article>
+            <h2>{section.title}</h2>
+            <p>{section.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-5xl);
+    background: var(--color-bg);
+  }
+
+  .legal-inner {
+    max-width: 860px;
+  }
+
+  .legal-header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .legal-header span {
+    display: block;
+    color: var(--color-primary);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    margin-bottom: var(--space-md);
+  }
+
+  .legal-header h1 {
+    font-size: var(--fs-5xl);
+    line-height: var(--lh-tight);
+    letter-spacing: 0;
+  }
+
+  .legal-content {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .legal-content article {
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .legal-content h2 {
+    font-size: var(--fs-xl);
+    margin-bottom: var(--space-sm);
+    letter-spacing: 0;
+  }
+
+  .legal-content p {
+    color: var(--color-text-secondary);
+    line-height: var(--lh-relaxed);
+  }
+
+  @media (max-width: 768px) {
+    .legal-page {
+      padding: calc(var(--navbar-height) + var(--space-2xl)) 0 var(--space-4xl);
+    }
+
+    .legal-header h1 {
+      font-size: var(--fs-4xl);
+    }
+  }
+</style>

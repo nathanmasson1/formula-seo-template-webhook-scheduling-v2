@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 720" role="img" aria-label="Print WhatsApp com cliente elogiando atendimento">
+  <rect width="390" height="720" rx="34" fill="#101820"/>
+  <rect x="18" y="20" width="354" height="680" rx="26" fill="#efe7dc"/>
+  <rect x="18" y="20" width="354" height="86" rx="26" fill="#075e54"/>
+  <circle cx="62" cy="64" r="24" fill="#d7f8d2"/>
+  <text x="102" y="58" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#fff">Lucas</text>
+  <text x="102" y="80" font-family="Arial, sans-serif" font-size="12" fill="#b8efe4">online</text>
+  <g font-family="Arial, sans-serif" font-size="15">
+    <rect x="44" y="138" width="248" height="84" rx="14" fill="#fff"/>
+    <text x="60" y="164" fill="#263238">Qual pacote você indica</text>
+    <text x="60" y="184" fill="#263238">para um site novo?</text>
+    <text x="60" y="204" fill="#263238">Quero algo seguro.</text>
+    <rect x="84" y="250" width="246" height="124" rx="14" fill="#dcf8c6"/>
+    <text x="100" y="276" fill="#263238">Para começar, o pack 12</text>
+    <text x="100" y="296" fill="#263238">costuma dar bom ritmo</text>
+    <text x="100" y="316" fill="#263238">sem parecer agressivo.</text>
+    <text x="100" y="336" fill="#263238">Podemos ajustar âncoras.</text>
+    <rect x="44" y="404" width="258" height="84" rx="14" fill="#fff"/>
+    <text x="60" y="430" fill="#263238">Fechamos então. Gostei</text>
+    <text x="60" y="450" fill="#263238">do atendimento e da</text>
+    <text x="60" y="470" fill="#263238">explicação.</text>
+  </g>
+</svg>

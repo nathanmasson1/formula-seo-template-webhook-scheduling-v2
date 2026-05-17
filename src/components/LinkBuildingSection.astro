@@ -1,0 +1,284 @@
+---
+import { socialLinkAttrs } from '../lib/socialLinks';
+
+interface Props { data?: any; }
+
+const d = Astro.props.data || {};
+const label = d.label || 'Autoridade que sustenta o crescimento';
+const title = d.title || 'Link building transforma conteúdo em presença real no Google';
+const titleAccent = d.titleAccent || 'presença real';
+const text = d.text || 'Conteúdo bom precisa de sinais de confiança. Backlinks bem planejados ajudam o Google a entender relevância, contexto e autoridade, acelerando a evolução das páginas certas.';
+const bullets = d.bullets || [
+  'Fortalece páginas estratégicas para disputar posições mais competitivas.',
+  'Cria sinais de confiança com publicações em sites alinhados ao seu nicho.',
+  'Complementa SEO técnico e conteúdo para formar uma estratégia completa.',
+];
+const ctaText = d.ctaText || 'Conhecer estratégia de backlinks';
+const ctaHref = d.ctaHref || '/backlinks';
+const metrics = d.metrics || [
+  { number: '01', label: 'Conteúdo otimizado' },
+  { number: '02', label: 'Autoridade contextual' },
+  { number: '03', label: 'Ranking mais forte' },
+];
+
+const renderTitle = titleAccent && title.includes(titleAccent)
+  ? title.split(titleAccent)
+  : null;
+---
+
+<section class="link-building-section">
+  <div class="container link-building-inner">
+    <div class="link-building-copy">
+      <span class="section-label">{label}</span>
+      <h2>
+        {renderTitle ? (
+          <>
+            {renderTitle[0]}
+            <span>{titleAccent}</span>
+            {renderTitle.slice(1).join(titleAccent)}
+          </>
+        ) : title}
+      </h2>
+      <p>{text}</p>
+      <ul>
+        {bullets.map((bullet: string) => (
+          <li>{bullet}</li>
+        ))}
+      </ul>
+      <a href={ctaHref} class="btn btn-primary" {...socialLinkAttrs(ctaHref, ctaText)}>
+        {ctaText}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="link-building-visual" aria-label="Fluxo de link building">
+      <div class="authority-card main-card">
+        <span>Autoridade</span>
+        <strong>Links certos apontando para páginas certas</strong>
+      </div>
+      <div class="authority-path" aria-hidden="true"></div>
+      <div class="authority-grid">
+        {metrics.map((metric: any) => (
+          <div class="authority-card">
+            <span>{metric.number}</span>
+            <strong>{metric.label}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .link-building-section {
+    position: relative;
+    padding: var(--space-4xl) 0;
+    background: var(--color-bg-warm);
+    color: var(--color-text);
+    overflow: hidden;
+  }
+
+  .link-building-section::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background: var(--color-border-light);
+    pointer-events: none;
+  }
+
+  .link-building-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 0.82fr;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .link-building-copy {
+    max-width: 680px;
+  }
+
+  .link-building-copy .section-label {
+    background: var(--color-primary-surface);
+    border-color: var(--color-primary-lighter);
+    color: var(--color-primary);
+  }
+
+  .link-building-copy h2 {
+    color: var(--color-text);
+    font-size: clamp(2.35rem, 5vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: 0;
+    margin-bottom: var(--space-xl);
+  }
+
+  .link-building-copy h2 span {
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: var(--fw-regular);
+  }
+
+  .link-building-copy > p {
+    color: var(--color-text-secondary);
+    font-size: var(--fs-md);
+    line-height: var(--lh-relaxed);
+    max-width: 620px;
+  }
+
+  .link-building-copy ul {
+    display: grid;
+    gap: 12px;
+    margin: var(--space-2xl) 0;
+  }
+
+  .link-building-copy li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: var(--space-sm);
+    align-items: start;
+    color: var(--color-text-secondary);
+    line-height: var(--lh-relaxed);
+  }
+
+  .link-building-copy li::before {
+    content: "";
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background:
+      linear-gradient(135deg, #f4b63f, #ffd985);
+    box-shadow: 0 8px 20px rgba(244, 182, 63, 0.25);
+  }
+
+  .link-building-copy .btn {
+    gap: 0.65rem;
+    min-height: 52px;
+    padding: 1rem 1.45rem;
+    border-radius: 999px;
+    box-shadow: 0 16px 34px rgba(142, 36, 204, 0.18);
+  }
+
+  .link-building-visual {
+    position: relative;
+    min-height: 0;
+    padding: var(--space-2xl);
+    border: 1px solid rgba(142, 36, 204, 0.12);
+    border-radius: 8px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.84)),
+      var(--color-bg-pure);
+    box-shadow: 0 24px 58px rgba(58, 18, 88, 0.08);
+  }
+
+  .authority-card {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-lg);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #261137;
+    border: 1px solid rgba(142, 36, 204, 0.12);
+    box-shadow: 0 18px 40px rgba(58, 18, 88, 0.08);
+  }
+
+  .authority-card span {
+    display: block;
+    color: var(--color-primary);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-extrabold);
+    letter-spacing: var(--ls-widest);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+  }
+
+  .authority-card strong {
+    display: block;
+    color: #261137;
+    font-size: var(--fs-lg);
+    line-height: 1.2;
+  }
+
+  .main-card {
+    max-width: 330px;
+    margin: 0 auto var(--space-2xl);
+    text-align: center;
+    background: #fff;
+  }
+
+  .authority-path {
+    position: absolute;
+    left: 50%;
+    top: 132px;
+    bottom: 135px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--color-primary), rgba(142, 36, 204, 0.12));
+    transform: translateX(-50%);
+  }
+
+  .authority-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .authority-grid .authority-card {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .authority-grid .authority-card span {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    border-radius: 8px;
+    background: var(--color-primary-surface);
+    letter-spacing: 0;
+  }
+
+  .authority-grid .authority-card strong {
+    font-size: var(--fs-base);
+  }
+
+  @media (max-width: 900px) {
+    .link-building-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .link-building-visual {
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .link-building-section {
+      padding: var(--space-3xl) 0;
+    }
+
+    .link-building-copy h2 {
+      font-size: clamp(2rem, 12vw, 3.2rem);
+    }
+
+    .link-building-copy li {
+      grid-template-columns: 22px 1fr;
+    }
+
+    .link-building-copy li::before {
+      width: 22px;
+      height: 22px;
+    }
+
+    .link-building-visual {
+      padding: var(--space-lg);
+    }
+  }
+</style>

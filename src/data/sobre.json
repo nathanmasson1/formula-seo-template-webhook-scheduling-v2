@@ -1,0 +1,107 @@
+{
+  "seo": {
+    "title": "Sobre",
+    "description": "Conheça a Formula SEO, uma agência de marketing digital focada em SEO, backlinks, conteúdo e crescimento orgânico.",
+    "image": ""
+  },
+  "hero": {
+    "label": "Sobre a agência",
+    "title": "Criamos crescimento orgânico com",
+    "titleAccent": "estratégia e execução",
+    "subtitle": "Somos uma equipe focada em ajudar sites a ganharem autoridade, tráfego qualificado e previsibilidade por meio de SEO, conteúdo e backlinks contextuais."
+  },
+  "story": {
+    "label": "Nossa abordagem",
+    "title": "Menos promessa vazia, mais",
+    "titleAccent": "processo mensurável",
+    "paragraphs": [
+      "A Formula SEO nasceu para simplificar uma dor comum: empresas investem em conteúdo, mas não conseguem transformar presença digital em autoridade real. Nosso trabalho conecta diagnóstico, planejamento e execução.",
+      "Unimos SEO técnico, conteúdo estratégico e publicações em sites relevantes para construir sinais de confiança ao longo do tempo. Cada projeto começa com entendimento de mercado, concorrência e páginas prioritárias.",
+      "Acreditamos em comunicação direta, acompanhamento humano e decisões baseadas no que pode mover o resultado orgânico de forma consistente."
+    ],
+    "stats": [
+      {
+        "number": "5000+",
+        "label": "Guest posts publicados"
+      },
+      {
+        "number": "120+",
+        "label": "Portais e blogs"
+      },
+      {
+        "number": "500+",
+        "label": "Clientes atendidos"
+      },
+      {
+        "number": "10d",
+        "label": "Prazo médio inicial"
+      }
+    ]
+  },
+  "values": {
+    "label": "Princípios",
+    "title": "O que guia cada projeto",
+    "subtitle": "SEO funciona melhor quando combina clareza, consistência e relevância.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Relevância antes de volume",
+        "text": "Priorizamos links, conteúdos e otimizações que fazem sentido para o nicho e para a página que precisa crescer."
+      },
+      {
+        "number": "02",
+        "title": "Execução transparente",
+        "text": "Você entende o que será feito, por que será feito e quais etapas sustentam a estratégia."
+      },
+      {
+        "number": "03",
+        "title": "Autoridade com contexto",
+        "text": "Backlinks não são apenas quantidade. Selecionamos oportunidades editoriais com coerência temática e intenção."
+      },
+      {
+        "number": "04",
+        "title": "Foco em resultado útil",
+        "text": "O objetivo é gerar tráfego qualificado, melhorar presença orgânica e apoiar oportunidades comerciais reais."
+      }
+    ]
+  },
+  "timeline": {
+    "label": "Processo",
+    "title": "Como conduzimos uma estratégia",
+    "items": [
+      {
+        "year": "01",
+        "title": "Diagnóstico",
+        "text": "Mapeamos autoridade atual, concorrentes, páginas prioritárias e oportunidades de conteúdo."
+      },
+      {
+        "year": "02",
+        "title": "Plano",
+        "text": "Definimos pacotes, âncoras, temas e ritmo de execução conforme o objetivo do projeto."
+      },
+      {
+        "year": "03",
+        "title": "Publicação",
+        "text": "Produzimos e publicamos conteúdos contextuais em sites alinhados ao nicho."
+      },
+      {
+        "year": "04",
+        "title": "Acompanhamento",
+        "text": "Monitoramos entregas, estabilidade dos links e próximos passos de crescimento."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Quer transformar SEO em",
+    "titleAccent": "canal de aquisição?",
+    "text": "Fale com a equipe e entenda qual estratégia faz sentido para o momento do seu site.",
+    "ctaPrimary": {
+      "text": "Falar com especialista",
+      "href": "/contato"
+    },
+    "ctaSecondary": {
+      "text": "Criação de Sites",
+      "href": "/criacao-de-sites"
+    }
+  }
+}

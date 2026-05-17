@@ -1,0 +1,51 @@
+{
+  "name": "Fórmula SEO",
+  "description": "Agência de marketing digital especializada em SEO, backlinks, conteúdo e crescimento orgânico.",
+  "url": "https://formulaseo.com.br",
+  "author": "Fórmula SEO",
+  "language": "pt-BR",
+  "logo": "/images/formula-seo-logo.svg",
+  "footerLogo": "/images/formula-seo-footer-logo.svg",
+  "favicon": "/favicon.svg",
+  "logoMark": "F",
+  "ctaText": "Backlinks",
+  "ctaHref": "/backlinks",
+  "theme": {
+    "primary": "#8e24cc",
+    "accent": "#f4b63f",
+    "font": "poppins",
+    "dark": "#1E293B"
+  },
+  "social": {
+    "instagram": "https://pt-br.facebook.com/",
+    "twitter": "https://pt-br.facebook.com/",
+    "facebook": "https://pt-br.facebook.com/",
+    "pinterest": "",
+    "youtube": "https://pt-br.facebook.com/",
+    "linkedin": "https://pt-br.facebook.com/",
+    "github": "https://pt-br.facebook.com/"
+  },
+  "contact": {
+    "email": "contato@formulaseo.com.br",
+    "phone": "16 9999999999",
+    "address": "Rua a",
+    "name": ""
+  },
+  "legal": {
+    "terms_last_updated": "",
+    "privacy_last_updated": ""
+  },
+  "phone": "",
+  "address": "",
+  "ai": {
+    "openaiKey": ""
+  },
+  "footer": {
+    "description": "@2026",
+    "copyright": "Fórmula SEO"
+  },
+  "seo": {
+    "description": "Agência de marketing digital especializada em SEO, backlinks, conteúdo e crescimento orgânico.",
+    "title": "Fórmula SEO - Agência de marketing digital especializada em SEO e backlinks"
+  }
+}

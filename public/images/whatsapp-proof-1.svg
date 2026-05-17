@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 720" role="img" aria-label="Print de conversa do WhatsApp com cliente satisfeito">
+  <rect width="390" height="720" rx="34" fill="#101820"/>
+  <rect x="18" y="20" width="354" height="680" rx="26" fill="#efe7dc"/>
+  <rect x="18" y="20" width="354" height="86" rx="26" fill="#075e54"/>
+  <circle cx="62" cy="64" r="24" fill="#d7f8d2"/>
+  <text x="102" y="58" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#fff">Mariana</text>
+  <text x="102" y="80" font-family="Arial, sans-serif" font-size="12" fill="#b8efe4">online</text>
+  <g font-family="Arial, sans-serif" font-size="15">
+    <rect x="42" y="138" width="228" height="62" rx="14" fill="#fff"/>
+    <text x="58" y="164" fill="#263238">Os backlinks já foram</text>
+    <text x="58" y="184" fill="#263238">publicados?</text>
+    <rect x="104" y="226" width="226" height="86" rx="14" fill="#dcf8c6"/>
+    <text x="120" y="252" fill="#263238">Sim, recebemos tudo</text>
+    <text x="120" y="272" fill="#263238">dentro do prazo e os</text>
+    <text x="120" y="292" fill="#263238">links estão ativos.</text>
+    <rect x="82" y="338" width="248" height="106" rx="14" fill="#dcf8c6"/>
+    <text x="98" y="364" fill="#263238">Depois das publicações,</text>
+    <text x="98" y="384" fill="#263238">as páginas começaram a</text>
+    <text x="98" y="404" fill="#263238">ganhar mais impressões.</text>
+    <text x="246" y="424" fill="#6a7c73" font-size="11">14:32 ✓✓</text>
+    <rect x="42" y="472" width="226" height="64" rx="14" fill="#fff"/>
+    <text x="58" y="498" fill="#263238">Excelente, obrigado!</text>
+    <text x="58" y="518" fill="#263238">Vamos pedir outro pack.</text>
+  </g>
+</svg>

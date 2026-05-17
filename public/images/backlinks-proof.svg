@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 460" role="img" aria-label="Selo de recomendação SEO">
+  <rect width="680" height="460" rx="34" fill="#18082f"/>
+  <circle cx="340" cy="208" r="112" fill="#8e24cc"/>
+  <circle cx="340" cy="208" r="82" fill="#b63ee8"/>
+  <path d="M300 210l28 28 60-72" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="142" y="326" width="396" height="58" rx="29" fill="#f4b63f"/>
+  <text x="340" y="363" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#18082f">RECOMENDADO POR SEO</text>
+</svg>

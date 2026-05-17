@@ -1,0 +1,8 @@
+---
+export const prerender = false;
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import BulkSeoBlogEditor from '../../../components/admin/BulkSeoBlogEditor';
+---
+<AdminLayout title="Gerador SEO em Massa" activeSection="reviews">
+    <BulkSeoBlogEditor client:load />
+</AdminLayout>

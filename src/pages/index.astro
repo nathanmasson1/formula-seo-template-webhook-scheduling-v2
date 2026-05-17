@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SocialProof from '../components/SocialProof.astro';
+import LinkBuildingSection from '../components/LinkBuildingSection.astro';
+import PostsGrid from '../components/PostsGrid.astro';
+import About from '../components/About.astro';
+import { readData } from '../lib/readData';
+
+const home = readData('home.json');
+---
+
+<BaseLayout
+  title="Home"
+  description="Agência de marketing digital especializada em SEO, backlinks, conteúdo e crescimento orgânico."
+>
+  <Hero data={home.hero} />
+  <SocialProof data={home.socialProof} />
+  <LinkBuildingSection data={home.linkBuilding} />
+  <PostsGrid data={home.postsGrid} />
+  <About data={home.about} />
+</BaseLayout>

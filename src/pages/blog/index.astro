@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import { isPostPublic } from '../../lib/postVisibility';
+
+const posts = (await getCollection('blog', ({ data }) => isPostPublic(data)))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Blog"
+  description="Insights de SEO, marketing digital, conteúdo e autoridade para melhorar sua presença orgânica."
+>
+  <section class="blog-hero">
+    <div class="container blog-hero-inner">
+      <div>
+        <span class="section-label">Blog da agência</span>
+        <h1>Ideias práticas para crescer com marketing orgânico</h1>
+      </div>
+      <p>
+        Conteúdos para orientar decisões de SEO, conteúdo, backlinks e performance.
+        Use os artigos como ponto de partida para melhorar autoridade, tráfego e conversão.
+      </p>
+    </div>
+  </section>
+
+  <section class="blog-feature-strip">
+    <div class="container feature-strip-inner">
+      <span>SEO técnico</span>
+      <span>Backlinks</span>
+      <span>Conteúdo estratégico</span>
+      <span>Conversão</span>
+    </div>
+  </section>
+
+  <section class="blog-posts section">
+    <div class="container">
+      <div class="posts-heading">
+        <span class="section-label">Últimas publicações</span>
+        <h2>Aprenda, priorize e execute melhor</h2>
+      </div>
+      <div class="blog-grid stagger-children">
+        {posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            image={post.data.image}
+            imageAlt={post.data.imageAlt}
+            category={post.data.category}
+            slug={post.id}
+            rating={post.data.rating}
+            badge={post.data.badge}
+            priceRange={post.data.priceRange}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    padding: calc(var(--navbar-height) + var(--space-4xl)) 0 var(--space-4xl);
+    background:
+      linear-gradient(135deg, rgba(52, 8, 88, 0.94), rgba(142, 36, 204, 0.82)),
+      linear-gradient(90deg, rgba(20, 8, 36, 0.88), rgba(115, 63, 208, 0.52)),
+      url('/images/marketing-agency-hero.jpg') center/cover;
+  }
+
+  .blog-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 0.72fr;
+    gap: var(--space-4xl);
+    align-items: end;
+  }
+
+  .blog-hero .section-label {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: var(--color-accent-light);
+  }
+
+  .blog-hero h1 {
+    color: #fff;
+    font-size: var(--fs-hero);
+    line-height: 1.04;
+    letter-spacing: 0;
+    max-width: 780px;
+  }
+
+  .blog-hero p {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: var(--fs-md);
+    line-height: var(--lh-relaxed);
+  }
+
+  .blog-feature-strip {
+    background: var(--color-bg-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .feature-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+  }
+
+  .feature-strip-inner span {
+    padding: var(--space-lg);
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: var(--fw-semibold);
+    text-align: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .blog-posts {
+    background: var(--color-bg);
+  }
+
+  .posts-heading {
+    max-width: 660px;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .posts-heading h2 {
+    font-size: var(--fs-4xl);
+    letter-spacing: 0;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-hero-inner,
+    .feature-strip-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .blog-hero {
+      padding-bottom: var(--space-3xl);
+    }
+
+    .feature-strip-inner span {
+      text-align: left;
+      border-left: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
