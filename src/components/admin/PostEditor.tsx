@@ -9,6 +9,38 @@ interface PostEditorProps {
     filePath: string | null; // null = novo post
 }
 
+declare global {
+    interface Window {
+        tinymce?: any;
+        __tinyMceLoadingPromise?: Promise<void>;
+    }
+}
+
+const TINYMCE_SCRIPT_SRC = 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js';
+
+function loadTinyMce() {
+    if (window.tinymce) return Promise.resolve();
+    if (window.__tinyMceLoadingPromise) return window.__tinyMceLoadingPromise;
+
+    window.__tinyMceLoadingPromise = new Promise<void>((resolve, reject) => {
+        const existing = document.querySelector<HTMLScriptElement>(`script[src="${TINYMCE_SCRIPT_SRC}"]`);
+        if (existing) {
+            existing.addEventListener('load', () => resolve(), { once: true });
+            existing.addEventListener('error', () => reject(new Error('Nao foi possivel carregar o TinyMCE.')), { once: true });
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = TINYMCE_SCRIPT_SRC;
+        script.referrerPolicy = 'origin';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Nao foi possivel carregar o TinyMCE.'));
+        document.head.appendChild(script);
+    });
+
+    return window.__tinyMceLoadingPromise;
+}
+
 function SimpleHtmlEditor({ value, onChange }: { value: string; onChange: (value: string) => void }) {
     const editorRef = useRef<HTMLDivElement>(null);
 
@@ -53,6 +85,86 @@ function SimpleHtmlEditor({ value, onChange }: { value: string; onChange: (value
                 onInput={sync}
                 onBlur={sync}
                 dangerouslySetInnerHTML={{ __html: value }}
+            />
+        </div>
+    );
+}
+
+function TinyMceEditor({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+    const editorRef = useRef<any>(null);
+    const onChangeRef = useRef(onChange);
+    const latestValueRef = useRef(value || '');
+    const [loadError, setLoadError] = useState('');
+
+    useEffect(() => {
+        onChangeRef.current = onChange;
+    }, [onChange]);
+
+    useEffect(() => {
+        latestValueRef.current = value || '';
+        const editor = editorRef.current;
+        if (editor && editor.initialized && editor.getContent() !== latestValueRef.current) {
+            editor.setContent(latestValueRef.current);
+        }
+    }, [value]);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        loadTinyMce()
+            .then(() => {
+                if (cancelled || !window.tinymce) return;
+                window.tinymce.remove('#contentEditor');
+                window.tinymce.init({
+                    selector: '#contentEditor',
+                    convert_urls: false,
+                    height: 600,
+                    plugins: 'advlist autolink lists link image media table code fullscreen',
+                    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image media | code fullscreen',
+                    link_title: false,
+                    link_target_list: [
+                        { title: 'Nova Aba (_blank)', value: '_blank' },
+                        { title: 'Mesma Aba', value: '' }
+                    ],
+                    link_rel_list: [
+                        { title: 'Nenhum', value: '' },
+                        { title: 'Nofollow', value: 'nofollow' },
+                        { title: 'Noopener Noreferrer', value: 'noopener noreferrer' }
+                    ],
+                    setup: (editor: any) => {
+                        editorRef.current = editor;
+                        editor.on('init', () => {
+                            editor.setContent(latestValueRef.current || '');
+                        });
+                        editor.on('change keyup undo redo setcontent', () => {
+                            latestValueRef.current = editor.getContent();
+                            onChangeRef.current(latestValueRef.current);
+                        });
+                    },
+                });
+            })
+            .catch((err: Error) => setLoadError(err.message));
+
+        return () => {
+            cancelled = true;
+            if (window.tinymce) window.tinymce.remove('#contentEditor');
+            editorRef.current = null;
+        };
+    }, []);
+
+    return (
+        <div>
+            {loadError && (
+                <div className="mb-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-700">
+                    {loadError} Usando editor simples.
+                </div>
+            )}
+            <textarea
+                id="contentEditor"
+                value={value || ''}
+                onChange={e => onChange(e.target.value)}
+                className="min-h-[600px] w-full rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-800 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20"
+                placeholder="Escreva o conteudo do artigo..."
             />
         </div>
     );
@@ -184,7 +296,9 @@ export default function PostEditor({ filePath }: PostEditorProps) {
                 await githubApi('write', ghPath, { content: base64Content, isBase64: true, message: `Upload capa blog ${ghPath}` });
                 finalHeroImage = ghPath.replace('public', '');
             }
-            const cleanedContent = post.content.replace(/&nbsp;/g, ' ').replace(/\u00A0/g, ' ');
+            const editorContent = window.tinymce?.get('contentEditor')?.getContent?.();
+            const contentToSave = typeof editorContent === 'string' ? editorContent : post.content;
+            const cleanedContent = contentToSave.replace(/&nbsp;/g, ' ').replace(/\u00A0/g, ' ');
             const finalHtmlContent = await extractAndUploadInlineImages(cleanedContent);
             const scheduledAt = post.scheduledAt ? new Date(post.scheduledAt).toISOString() : '';
             const effectiveDraft = scheduledAt ? true : post.draft;
@@ -259,7 +373,7 @@ export default function PostEditor({ filePath }: PostEditorProps) {
                         {isPreview ? (
                             <div className="prose prose-slate max-w-none border border-slate-200 rounded-xl p-6 min-h-[300px]" dangerouslySetInnerHTML={{ __html: post.content }} />
                         ) : (
-                            <SimpleHtmlEditor
+                            <TinyMceEditor
                                 value={post.content}
                                 onChange={(val: string) => setPost(p => ({ ...p, content: val }))}
                             />
