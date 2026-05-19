@@ -35,6 +35,7 @@ type BacklinksConfig = {
         stats: Stat[];
         visual: { label: string; title: string; text: string; items: VisualItem[] };
     };
+    video: { youtubeUrl: string };
     problem: { label: string; title: string; text: string; image: string; points: string[] };
     plans: { label: string; title: string; subtitle: string; items: Plan[] };
     differentials: { label: string; title: string; ctaText: string; ctaHref: string; items: TextItem[] };
@@ -182,6 +183,9 @@ export default function BacklinksEditor() {
                             items: parsed.hero?.visual?.items || defaultHeroVisual.items,
                         },
                     },
+                    video: {
+                        youtubeUrl: parsed.video?.youtubeUrl || '',
+                    },
                 });
                 setFileSha(data.sha);
             })
@@ -312,6 +316,20 @@ export default function BacklinksEditor() {
             </div>
 
             {error && <div className="p-4 bg-red-100 text-red-700 rounded-xl font-bold"><AlertCircle className="w-4 h-4 inline mr-2" />{error}</div>}
+
+            <SectionCard title="Video YouTube" icon={<LinkIcon className="w-5 h-5 text-red-500" />}>
+                <div className="space-y-4">
+                    <TextField
+                        label="Link do video"
+                        value={config.video.youtubeUrl}
+                        placeholder="https://www.youtube.com/watch?v=..."
+                        onChange={v => set('video.youtubeUrl', v)}
+                    />
+                    <p className="text-xs text-slate-500">
+                        Opcional: deixe vazio para ocultar a secao de video em /backlinks.
+                    </p>
+                </div>
+            </SectionCard>
 
             <SectionCard title="Hero" icon={<Sparkles className="w-5 h-5 text-amber-500" />} defaultOpen>
                 <div className="space-y-4">
