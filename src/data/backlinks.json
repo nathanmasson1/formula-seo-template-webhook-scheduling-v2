@@ -50,6 +50,9 @@
       }
     ]
   },
+  "video": {
+    "youtubeUrl": "https://www.youtube.com/watch?v=S6Z66p0uG9o"
+  },
   "problem": {
     "label": "",
     "title": "Seu site ainda não tem a autoridade que precisa?",
