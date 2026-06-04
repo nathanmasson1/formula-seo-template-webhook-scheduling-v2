@@ -50,6 +50,7 @@ type BacklinksConfig = {
 
 const inputClass = "w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:ring-2 focus:ring-indigo-500 outline-none text-sm";
 const labelClass = "block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5";
+const DEFAULT_SHARE_IMAGE = 'https://formulaseo.com.br/images/og-default.jpg';
 const TESTIMONIAL_TARGET_COUNT = 12;
 const defaultHeroVisual = {
     label: 'Operação de autoridade',
@@ -175,6 +176,11 @@ export default function BacklinksEditor() {
                 const parsed = JSON.parse(data?.content || '{}');
                 setConfig({
                     ...parsed,
+                    seo: {
+                        title: parsed.seo?.title || 'Comprar Backlinks',
+                        description: parsed.seo?.description || '',
+                        image: parsed.seo?.image || DEFAULT_SHARE_IMAGE,
+                    },
                     hero: {
                         ...parsed.hero,
                         visual: {
@@ -604,8 +610,14 @@ export default function BacklinksEditor() {
                 <div className="space-y-4">
                     <TextField label="Título SEO" value={config.seo.title} onChange={v => set('seo.title', v)} />
                     <TextField label="Meta descrição" textarea rows={3} value={config.seo.description} onChange={v => set('seo.description', v)} />
+                    <TextField
+                        label="URL da imagem de compartilhamento"
+                        value={config.seo.image}
+                        placeholder={DEFAULT_SHARE_IMAGE}
+                        onChange={v => set('seo.image', v)}
+                    />
                     <ImageUploadField
-                        label="Imagem Open Graph"
+                        label="Upload da imagem de compartilhamento"
                         value={config.seo.image}
                         pending={pendingUploads['seo.image']}
                         onSelect={file => handleImageSelect('seo.image', file)}
