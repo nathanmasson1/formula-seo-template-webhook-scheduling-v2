@@ -8,10 +8,12 @@ import About from '../components/About.astro';
 import { readData } from '../lib/readData';
 
 const home = readData('home.json');
+const seo = home.seo || {};
 ---
 
 <BaseLayout
   title="Home"
+  image={seo.image || undefined}
   description="Agência de marketing digital especializada em SEO, backlinks, conteúdo e crescimento orgânico."
 >
   <Hero data={home.hero} />
