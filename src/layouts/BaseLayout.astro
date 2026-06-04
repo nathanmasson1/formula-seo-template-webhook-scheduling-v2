@@ -6,7 +6,7 @@ import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 import HeadPlugins from '../plugins/_slots/HeadPlugins.astro';
 import BodyEndPlugins from '../plugins/_slots/BodyEndPlugins.astro';
 import { readData } from '../lib/readData';
-import { buildSiteUrl, getConfiguredSiteUrl } from '../lib/siteUrl';
+import { buildCanonicalUrl, buildSiteUrl, getConfiguredSiteUrl } from '../lib/siteUrl';
 
 interface Product {
   name: string;
@@ -54,7 +54,7 @@ const pluginsConfig = readData('pluginsConfig.json') || {};
 const seoConfig = pluginsConfig?.seo || {};
 const siteName = site.name || 'Seu Blog';
 const siteUrl = getConfiguredSiteUrl(Astro.site);
-const pageUrl = buildSiteUrl(canonicalURL || Astro.url.pathname, siteUrl);
+const pageUrl = buildCanonicalUrl(canonicalURL || Astro.url.pathname, siteUrl);
 const imageUrl = buildSiteUrl(image, siteUrl);
 const orgName = seoConfig.orgName || siteName;
 const orgLogo = seoConfig.orgLogo || site.logo || '';
