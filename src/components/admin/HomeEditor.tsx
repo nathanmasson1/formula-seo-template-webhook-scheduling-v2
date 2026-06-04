@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Save, Loader2, AlertCircle, Plus, Trash2, Zap, Star, BarChart3, Users, ChevronDown, ChevronUp, Link as LinkIcon } from 'lucide-react';
+import { Save, Loader2, AlertCircle, Plus, Trash2, Zap, Star, BarChart3, Users, ChevronDown, ChevronUp, Link as LinkIcon, Search } from 'lucide-react';
 import { triggerToast } from './CmsToaster';
 import { githubApi } from '../../lib/adminApi';
 
@@ -11,6 +11,9 @@ type ProofBrand = { title: string; description: string };
 type LinkMetric = { number: string; label: string };
 
 type HomeConfig = {
+    seo: {
+        image: string;
+    };
     hero: {
         badge: string;
         title: string;
@@ -57,6 +60,7 @@ type HomeConfig = {
 
 const inputClass = "w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:ring-2 focus:ring-indigo-500 outline-none text-sm";
 const labelClass = "block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5";
+const DEFAULT_SHARE_IMAGE = 'https://formulaseo.com.br/images/og-default.jpg';
 
 function SectionCard({ title, icon, children, defaultOpen = false }: { title: string; icon: React.ReactNode; children: React.ReactNode; defaultOpen?: boolean }) {
     const [open, setOpen] = useState(defaultOpen);
@@ -85,6 +89,9 @@ export default function HomeEditor() {
         githubApi('read', 'src/data/home.json')
             .then(data => {
                 const parsed = JSON.parse(data?.content || '{}');
+                parsed.seo = {
+                    image: parsed.seo?.image || DEFAULT_SHARE_IMAGE,
+                };
                 parsed.socialProof = {
                     brandLabel: parsed.socialProof?.brandLabel || 'Serviços integrados para crescimento orgânico',
                     stats: parsed.socialProof?.stats || [],
@@ -152,6 +159,18 @@ export default function HomeEditor() {
             </div>
 
             {error && <div className="p-4 bg-red-100 text-red-700 rounded-xl font-bold"><AlertCircle className="w-4 h-4 inline mr-2" />{error}</div>}
+
+            <SectionCard title="SEO" icon={<Search className="w-5 h-5 text-slate-500" />}>
+                <div>
+                    <label className={labelClass}>URL da imagem de compartilhamento</label>
+                    <input
+                        className={inputClass}
+                        value={config.seo.image}
+                        onChange={e => set('seo.image', e.target.value)}
+                        placeholder={DEFAULT_SHARE_IMAGE}
+                    />
+                </div>
+            </SectionCard>
 
             {/* HERO */}
             <SectionCard title="Hero Section" icon={<Zap className="w-5 h-5 text-amber-500" />} defaultOpen={true}>
