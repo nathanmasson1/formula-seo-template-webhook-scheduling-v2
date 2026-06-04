@@ -19,3 +19,9 @@ export function getConfiguredSiteUrl(fallback?: string | URL | null) {
 export function buildSiteUrl(pathOrUrl: string | URL, siteUrl = getConfiguredSiteUrl()) {
   return new URL(pathOrUrl.toString(), `${normalizeSiteUrl(siteUrl)}/`).toString();
 }
+
+export function buildCanonicalUrl(pathOrUrl: string | URL, siteUrl = getConfiguredSiteUrl()) {
+  const url = new URL(pathOrUrl.toString(), `${normalizeSiteUrl(siteUrl)}/`);
+  const path = url.pathname.replace(/\/+$/, '');
+  return `${url.origin}${path}${url.search}${url.hash}`;
+}
